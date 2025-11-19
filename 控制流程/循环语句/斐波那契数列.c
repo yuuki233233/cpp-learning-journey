@@ -1,22 +1,19 @@
 #define _CRT_SECURE_NO_WARNINGS
 #include<stdio.h>
+#include<string.h>
 
-int main() {
-	int n = 0;
-	printf("请输入你要输入的项: ");
-	scanf("%d", &n);
+int main()
+{
+    char arr[100] = { 0 };
+    scanf("%s", arr);
+    size_t len = strlen(arr);
 
-	int a = 0, b = 1;
-	if (n <= 1) printf("%d\n", a);
-	if (n <= 2) printf("%d\n", b);
-
-	int num = 2;
-	for (int i = 1; i <= n; i++) {
-		int max = a + b;
-		printf("%d\n", max);
-
-	    a = b;
-		b = max;
-	}
-	return 0;
+    for (int i = 0; i < len / 2; i++)
+    {
+        char a = arr[i];
+        arr[i] = arr[len - i - 1];
+        arr[len - i - 1] = a;
+    }
+    printf("%s", arr);
+    return 0;
 }

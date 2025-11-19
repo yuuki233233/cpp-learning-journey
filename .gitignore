@@ -1,0 +1,21 @@
+# VS文件
+.vs/
+*.sln
+*.vcxproj*
+*.user
+Debug/
+Release/
+x64/
+x86/
+*.exe
+*.obj
+*.pdb
+*.ilk
+
+# 系统文件
+.DS_Store
+Thumbs.db
+
+# 临时文件  
+*.tmp
+*.temp
