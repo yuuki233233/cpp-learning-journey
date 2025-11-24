@@ -1,4 +1,4 @@
-//C++¼æÈİC
+ï»¿//C++å…¼å®¹C
 //#define _CRT_SECURE_NO_WARNINGS
 //#include<stdio.h>
 //
@@ -9,7 +9,7 @@
 //	return 0;
 //}
 
-//CÓïÑÔÃüÃû³åÍ»
+//Cè¯­è¨€å‘½åå†²çª
 //#include<stdio.h>
 //#include<stdlib.h>
 //int rand = 9;
@@ -23,32 +23,32 @@
 //#include<stdio.h>
 //#include<stdlib.h>
 //
-////Óò
+////åŸŸ
 //namespace yuuki
 //{
-//	// ÃüÃû¿Õ¼äÖĞ¿ÉÒÔ¶¨Òå±äÁ¿/º¯Êı/ÀàĞÍ
-//	int rand = 10;	//³£Á¿
+//	// å‘½åç©ºé—´ä¸­å¯ä»¥å®šä¹‰å˜é‡/å‡½æ•°/ç±»å‹
+//	int rand = 10;	//å¸¸é‡
 //
-//	//º¯Êı
+//	//å‡½æ•°
 //	int Add(int left, int right)
 //	{
 //		return left + right;
 //	}
 //
-//	//½á¹¹Ìå
+//	//ç»“æ„ä½“
 //	struct Node
 //	{
 //		struct Node* next;
 //		int val;
 //	};
 //
-//}//×¢Òâ£ºÃ»ÓĞ·ÖºÅ
+//}//æ³¨æ„ï¼šæ²¡æœ‰åˆ†å·
 //
 //int main()
 //{
-//	// ÕâÀïÄ¬ÈÏÊÇ·ÃÎÊµÄÊÇÈ«¾ÖµÄrandº¯ÊıÖ¸Õë
+//	// è¿™é‡Œé»˜è®¤æ˜¯è®¿é—®çš„æ˜¯å…¨å±€çš„randå‡½æ•°æŒ‡é’ˆ
 //	printf("rand = %p\n", rand);
-//	// ÕâÀïÖ¸¶¨bitÃüÃû¿Õ¼äÖĞµÄrand
+//	// è¿™é‡ŒæŒ‡å®šbitå‘½åç©ºé—´ä¸­çš„rand
 //	printf("yuuki::rand = %d\n", yuuki::rand);
 //
 //	printf("yuuki::Add = %p\n", yuuki::Add);
@@ -63,7 +63,7 @@
 //#include<iostream>
 //using namespace std;
 //
-////Óò
+////åŸŸ
 //namespace yuuki
 //{
 //	int rand = 10;
@@ -76,7 +76,7 @@
 //	int a = 1;
 //	cout << "a = " << a << endl; //1
 //
-//	// ::Óò×÷ÓÃÏŞ¶¨·û
+//	// ::åŸŸä½œç”¨é™å®šç¬¦
 //	cout << "::a = " << ::a << endl; //0
 //	cout << "yuuki::rand = " << yuuki::rand << endl; //10
 //	return 0;
@@ -126,12 +126,12 @@
 //}
 //int main()
 //{
-//	// ±àÒë±¨´í£ºerror C2065: ¡°a¡±: Î´ÉùÃ÷µÄ±êÊ¶·û
+//	// ç¼–è¯‘æŠ¥é”™ï¼šerror C2065: â€œaâ€: æœªå£°æ˜çš„æ ‡è¯†ç¬¦
 //	printf("%d\n", a);
 //	return 0;
 //}
 
-//// Ö¸¶¨ÃüÃû¿Õ¼ä·ÃÎÊ
+//// æŒ‡å®šå‘½åç©ºé—´è®¿é—®
 //#include<stdio.h>
 //namespace N
 //{
@@ -144,7 +144,7 @@
 ////	return 0;
 ////}
 //
-//// using½«ÃüÃû¿Õ¼äÖĞÄ³¸ö³ÉÔ±Õ¹¿ª
+//// usingå°†å‘½åç©ºé—´ä¸­æŸä¸ªæˆå‘˜å±•å¼€
 //using N::b;
 //int main()
 //{
@@ -153,7 +153,7 @@
 //	return 0;
 //}
 
-//// Õ¹¿ªÃüÃû¿Õ¼äÖĞÈ«²¿³ÉÔ±
+//// å±•å¼€å‘½åç©ºé—´ä¸­å…¨éƒ¨æˆå‘˜
 //using namespce N;
 //int main()
 //{
@@ -175,7 +175,7 @@
 //	cout << a << " " << b << " " << c << endl;
 //	std::cout << a << " " << b << " " << c << std::endl;
 //
-//	// ¿ÉÒÔ?¶¯Ê¶±ğ±äÁ¿µÄÀàĞÍ
+//	// å¯ä»¥â¾ƒåŠ¨è¯†åˆ«å˜é‡çš„ç±»å‹
 //	cin >> a >> b >> c;
 //	cout << a << " " << b << " " << c << endl;
 //	return 0;
@@ -185,8 +185,8 @@
 //using namespace std;
 //int main()
 //{
-//	// ÔÚioĞèÇó?½Ï?µÄµØ?£¬Èç²¿·Ö?Á¿Êä?µÄ¾ºÈüÌâÖĞ£¬¼ÓÉÏÒÔÏÂ3?´úÂë
-//	// ¿ÉÒÔÌá?C++IOĞ§ÂÊ
+//	// åœ¨ioéœ€æ±‚â½è¾ƒâ¾¼çš„åœ°â½…ï¼Œå¦‚éƒ¨åˆ†â¼¤é‡è¾“â¼Šçš„ç«èµ›é¢˜ä¸­ï¼ŒåŠ ä¸Šä»¥ä¸‹3â¾ä»£ç 
+//	// å¯ä»¥æâ¾¼C++IOæ•ˆç‡
 //	ios_base::sync_with_stdio(false);
 //	cin.tie(nullptr);
 //	cout.tie(nullptr);
@@ -210,35 +210,273 @@
 //	return 0;
 //}
 
-#include <iostream>
+//#include <iostream>
+//using namespace std;
+//
+//// å…¨ç¼ºçœ
+//void Func1(int a = 10, int b = 20, int c = 30)
+//{
+//	cout << "a = " << a << endl;
+//	cout << "b = " << b << endl;
+//	cout << "c = " << c << endl << endl;
+//}
+//
+//// åŠç¼ºçœ
+//void Func2(int a, int b = 10, int c = 20)
+//{
+//	cout << "a = " << a << endl;
+//	cout << "b = " << b << endl;
+//	cout << "c = " << c << endl << endl;
+//}
+//
+//int main()
+//{
+//	Func1();
+//	Func1(1);
+//	Func1(1, 2);
+//	Func1(1, 2, 3);
+//
+//	Func2(100);
+//	Func2(100, 200);
+//	Func2(100, 200, 300);
+//
+//	return 0;
+//}
+
+//// Stack.h
+//#include<iostream>
+//#include<assert.h>
+//using namespace std;
+//
+//typedef int STDataType;
+//typedef struct Stack
+//{
+//	STDataType* a;
+//	int top;
+//	int capacity;
+//}ST;
+//
+//void STInit(ST* pS, int n = 4);
+//
+//// Stack.cpp
+//#include"Stack.h"
+////ç¼ºçœå‚æ•°ä¸èƒ½å£°æ˜å’Œå®šä¹‰åŒæ—¶ç»™
+//void STInit(ST* pSï¼Œint n)
+//{
+//	assert(ps && n > 0);
+//
+//	ps->a = (STDataType*)malloc(n * sizeof(STDataType));
+//	ps->top = 0;
+//	ps->capacity = n;
+//}
+//
+////test.cpp
+//#include"Stack.h"
+//int main()
+//{
+//	ST s1;
+//	STInit(&s1);
+//	//ç¡®å®šçŸ¥é“è¦æ’å…¥1000ä¸ªæ•°æ®ï¼Œåˆå§‹åŒ–æ—¶ä¸€æŠŠå¼€å¥½ï¼Œé¿å…æ‰©å®¹
+//	ST s2;
+//	STInit(&s2, 1000);
+//	return 0;
+//}
+
+//#include<iostream>
+//using namespace std;
+//
+//int Add(int left, int right)
+//{
+//	return left + right;
+//}
+//
+//double Add(double left, double right)
+//{
+//	return left + right;
+//}
+//
+//int main()
+//{
+//	cout << Add(1, 2) << endl;      //3
+//	cout << Add(1.1, 2.2) << endl;  //3.3
+//}
+
+//#include<iostream>
+//using namespace std;
+//
+//void f()
+//{
+//	cout << "f()" << endl;
+//}
+//
+//void f(int a)
+//{
+//	cout << "f(int a)" << endl;
+//}
+//
+//int main()
+//{
+//	f();   //f()
+//	f(1);  //f(int a)
+//
+//	return 0;
+//}
+
+//#include<iostream>
+//using namespace std;
+//
+//void f(int a, char b)
+//{
+//	cout << "f(int a, char b)" << endl;
+//}
+//
+//void f(char b, int a)
+//{
+//	cout << "f(char b, int a)" << endl;
+//}
+//
+//int main()
+//{
+//	f(1, 'a'); //f(int a, char b)
+//	f('a', 1); //f(char b, int a)
+//
+//	return 0;
+//}
+
+//#include<iostream>
+//using namespace std;
+//
+//// ä¸‹â¾¯ä¸¤ä¸ªå‡½æ•°æ„æˆé‡è½½
+//void Func()
+//{
+//	cout << "Func()" << endl;
+//}
+//
+////ç¼ºçœå‚æ•° + å‡½æ•°é‡è½½
+//void Func(int a = 10)
+//{
+//	cout << "Func(int a = 10)" << endl;
+//}
+//
+//int main()
+//{
+//	// f()ä½†æ˜¯è°ƒç”¨æ—¶ï¼Œä¼šæŠ¥é”™ï¼Œå­˜åœ¨æ­§ä¹‰ï¼Œç¼–è¯‘å™¨ä¸çŸ¥é“è°ƒç”¨è°
+//	Func();
+//
+//	//è°ƒç”¨Func(int a = 10)
+//	Func(1);
+//	return 0;
+//}
+
+//#include<iostream>
+//using namespace std;
+//
+//int main()
+//{
+//	int a = 0;
+//
+//	// å¼•ç”¨ï¼šbå’Œcæ˜¯açš„åˆ«å
+//	int& b = a;
+//	int& c = a;
+//
+//	// ä¹Ÿå¯ä»¥ç»™åˆ«åbå–åˆ«åï¼Œdç›¸å½“äºè¿˜æ˜¯açš„åˆ«å
+//	int& d = b;
+//
+//	cout << "a = " << a << " b = " << b << endl;
+//	cout << "c = " << c << " d = " << d << endl;
+//
+//	d++;
+//
+//	cout << "&a = " << &a << endl;
+//	cout << "&b = " << &b << endl;
+//	cout << "&c = " << &c << endl;
+//	cout << "&d = " << &d << endl;
+//
+//	cout << "a = " << a << " b = " << b << endl;
+//	cout << "c = " << c << " d = " << d << endl;
+//
+//	return 0;
+//}
+//#include<iostream>
+//using namespace std;
+//
+//void Swap(int& rx, int& ry)
+//{
+//	int tmp = rx;
+//	rx = ry;
+//	ry = tmp;
+//}
+//
+//int main()
+//{
+//	int x = 3, y = 6;
+//	cout << "x = " << x << endl;
+//	cout << "y = " << y << endl;
+//
+//	Swap(x, y);
+//	cout << "x = " << x << endl;
+//	cout << "y = " << y << endl;
+//	return 0;
+//}
+
+#include"Stack.h"
+#include<iostream>
 using namespace std;
 
-// È«È±Ê¡
-void Func1(int a = 10, int b = 20, int c = 30)
+typedef int STDataType;
+
+typedef struct Stack
 {
-	cout << "a = " << a << endl;
-	cout << "b = " << b << endl;
-	cout << "c = " << c << endl << endl;
+	STDataType* a;
+	int top;
+	int capacity;
+}ST;
+
+void STInit(ST& rs, int n = 4)
+{
+	rs.a = (STDataType*)malloc(n * sizeof(STDataType));
+	rs.top = 0;
+	rs.capacity = n;
 }
 
-// °ëÈ±Ê¡
-void Func2(int a, int b = 10, int c = 20)
+//æ ˆé¡¶
+void STPush(ST& rs, STDataType x)
 {
-	cout << "a = " << a << endl;
-	cout << "b = " << b << endl;
-	cout << "c = " << c << endl << endl;
+	if (rs.top == rs.capacity)
+	{
+		int newcapacity = rs.capacity == 0 ? 4 : rs.capacity * 2;
+		STDataType* tmp = (STDataType*)realloc(rs.a, newcapacity * sizeof(STDataType));
+		if (tmp == NULL)
+		{
+			perror("realloc fail");
+			return;
+		}
+		rs.a = tmp;
+		rs.capacity = newcapacity;
+	}
+	rs.a[rs.top] = x;
+	rs.top++;
+}
+
+//int STTop(ST& rs)
+int& STTop(ST& rs)
+{
+	assert(rs.top > 0);
+	return rs.a[rs.top];
 }
 
 int main()
 {
-	Func1();
-	Func1(1);
-	Func1(1, 2);
-	Func1(1, 2, 3);
+	//è°ƒç”¨å…¨å±€çš„
+	ST st1;
+	STInit(st1);
+	STPush(st1, 1);
+	STPush(st1, 2);
 
-	Func2(100);
-	Func2(100, 200);
-	Func2(100, 200, 300);
+	cout << STTop(st1) << endl;
+
+	STTop(st1) += 10;
+	cout << STTop(st1) << endl;
 
 	return 0;
 }
