@@ -208,19 +208,66 @@
 //	return 0;
 //}
 
+//#include<iostream>
+//using namespace std;
+//
+//class Stack
+//{
+//	//尽管下面是公有的，上面也默认私有
+//	void Destory();
+//
+////公有（可以访问）
+//public:
+//	void Push(int x)
+//	{ }
+//	void Pop()
+//	{ }
+//	int Top()
+//	{ }
+//
+////私有（不能访问）
+//private:
+//	int* a;
+//	int top;
+//	int capacity;
+//};
+//
+//int main()
+//{
+//	//因为是公有，可以访问
+//	Stack st;
+//	st.Push(4);
+//
+//	//不能访问
+//	//st.Destory();
+//
+//	return 0;
+//}
+
 #include<iostream>
 using namespace std;
 
-class Stack
+class Date
 {
-	void Push(int x)
-	{ }
-	void Pop()
-	{ }
-	int Top()
-	{ }
-
-	int* a;
-	int top;
-	int capacity;
+public:
+	void Init(int year, int month, int day)
+	{
+		_year = year;
+		_month = month;
+		_day = day;
+	}
+private:
+	//为了区分成员变量，一般习惯是成员变量
+	//会加一个特殊标识，如_ 或者 m开头
+	int _year; // year_   m_year
+	int _month;
+	int _day;
 };
+
+int main()
+{
+	Date d;
+	d.Init(2025, 11, 24);
+
+	return 0;
+}
