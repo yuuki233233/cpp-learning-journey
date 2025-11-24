@@ -112,12 +112,69 @@
 //	return 0;
 //}
 
-#include<iostream>
-using namespace std;
+//#include<iostream>
+//using namespace std;
+//
+//inline int Add(int x, int y)
+//{
+//	int ret = x + y;
+//	ret += 1;
+//	ret += 1;
+//	ret += 1;
+//
+//	return ret;
+//}
+//
+//int main()
+//{
+//	//可以通过汇编观察程序是否展开
+//	//有call Add语句就是没有展开
+//	int ret = Add(1, 2);
+//	cout << Add(1, 2) * 5 << endl;
+//
+//	return 0;
+//}
 
-int main()
-{
+//#include<iostream>
+//using namespace std;
+//#define ADD(a, b) ((a) + (b))
+////不能在末尾加分号，加分号在C++中导致错误
+////外面要加括号，可能会因为运算符优先级问题，导致数据错误
+////里面要加括号，在比较运算符时，会导致问题
+//
+//int main()
+//{
+//	int ret = ADD(1, 2);
+//
+//	cout << ADD(1, 2) << endl;     //3
+//
+//	cout << ADD(1, 2) * 5 << endl; //如果不在外层加括号则是11
+//
+//	int x = 1, y = 2;
+//	ADD(x & y, x | y); // -> (x&y + x|y);
+//					   //+的优先级大于&和|
+//
+//	return 0;
+//}
 
-
-	return 0;
-}
+///*test.h*/
+//inline void Func(int x);
+//
+///*test.cpp*/
+//#include"test.h";
+//void Func(int x)
+//{
+//	cout << x << endl;
+//}
+//
+//
+//#include<iostream>
+//using namespace std;
+//
+//int main()
+//{
+//	//链接错误：无法解析的外部符号
+//	Func(1);
+//
+//	return 0;
+//}
