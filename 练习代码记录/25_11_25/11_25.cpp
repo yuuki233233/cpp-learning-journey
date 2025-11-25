@@ -117,36 +117,78 @@
 #include<iostream>
 using namespace std;
 
-class A
+//class A
+//{
+//public:
+//	void Print()
+//	{
+//		cout << _ch << endl;
+//	}
+//
+//private:
+//	char _ch;
+//	int _i;
+//};
+//
+//class B
+//{
+//	void Print() {};
+//};
+//
+//class C
+//{ };
+//
+//int main()
+//{
+//	A a;
+//	B b;
+//	C c;
+//
+//	cout << sizeof(a) << endl; //8
+//	cout << sizeof(b) << endl; //1
+// 	cout << sizeof(c) << endl; //1
+//
+//	return 0;
+//}
+
+
+
+class Date
 {
 public:
+	// void Init(Date* const this, int year, int month, int day)
+	void Init(int year, int month, int day)
+	{
+		//类里的函数里面加指针this解引用，两种都可行
+		this->_year = year;
+		this->_month = month;
+		_day = day;
+	}
+
 	void Print()
 	{
-		cout << _ch << endl;
+		cout << _year << "/" << _month << "/" << _day << endl;
 	}
 
 private:
-	char _ch;
-	int _i;
+	//这里只是声明，没有开辟空间
+	int _year;
+	int _month;
+	int _day;
 };
-
-class B
-{
-	void Print() {};
-};
-
-class C
-{ };
 
 int main()
 {
-	A a;
-	B b;
-	C c;
+	// Date类实例化出对象d1和d2
+	Date d1;
+	Date d2;
 
-	cout << sizeof(a) << endl;
-	cout << sizeof(b) << endl;
-	cout << sizeof(c) << endl;
+	// d1.Init(&d1, 2024, 3, 31);
+	d1.Init(2025, 5, 20);
+	d1.Print();
+
+	d2.Init(2026, 5, 20);
+	d2.Print();
 
 	return 0;
 }
