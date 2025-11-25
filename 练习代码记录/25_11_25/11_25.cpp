@@ -153,17 +153,113 @@ using namespace std;
 
 
 
+//class Date
+//{
+//public:
+//	// void Init(Date* const this, int year, int month, int day)
+//	void Init(int year, int month, int day)
+//	{
+//		//类里的函数里面加指针this解引用，两种都可行
+//		this->_year = year;
+//		this->_month = month;
+//		_day = day;
+//	}
+//
+//	void Print()
+//	{
+//		cout << _year << "/" << _month << "/" << _day << endl;
+//	}
+//
+//private:
+//	//这里只是声明，没有开辟空间
+//	int _year;
+//	int _month;
+//	int _day;
+//};
+//
+//int main()
+//{
+//	// Date类实例化出对象d1和d2
+//	Date d1;
+//	Date d2;
+//
+//	// d1.Init(&d1, 2024, 3, 31);
+//	d1.Init(2025, 5, 20);
+//	d1.Print();
+//
+//	d2.Init(2026, 5, 20);
+//	d2.Print();
+//
+//	return 0;
+//}
+
+//class A
+//{
+//public:
+//	void Print()
+//	{
+//		cout << "A::Print()" << endl;
+//	}
+//
+//private:
+//	int _a;
+//};
+//
+//int main()
+//{
+//	A* p = nullptr;
+//	p->Print();  //A::Print()
+//
+//	return 0;
+//}
+
+//class A
+//{
+//public:
+//	void Print()
+//	{
+//		cout << "A::Print()" << endl;
+//		cout << _a << endl;
+//	}
+//
+//private:
+//	int _a;
+//};
+//
+//int main()
+//{
+//	A* p = nullptr;
+//	p->Print();
+//
+//	return 0;
+//}
+
 class Date
 {
 public:
-	// void Init(Date* const this, int year, int month, int day)
-	void Init(int year, int month, int day)
+	// 1.无参构造函数
+	Date()
 	{
-		//类里的函数里面加指针this解引用，两种都可行
-		this->_year = year;
-		this->_month = month;
+		_year = 1;
+		_month = 1;
+		_day = 1;
+	}
+
+	// 2.带参构造函数
+	Date(int year, int month, int day)
+	{
+		_year = year;
+		_month = month;
 		_day = day;
 	}
+
+	////3. 全缺省构造函数
+	//Date(int year = 1, int month = 1, int day = 1)
+	//{
+	//	_year = year;
+	//	_month = month;
+	//	_day = day;
+	//}
 
 	void Print()
 	{
@@ -171,7 +267,6 @@ public:
 	}
 
 private:
-	//这里只是声明，没有开辟空间
 	int _year;
 	int _month;
 	int _day;
@@ -179,16 +274,19 @@ private:
 
 int main()
 {
-	// Date类实例化出对象d1和d2
-	Date d1;
-	Date d2;
+	//如果留下三个构造中的第二个带参构造，第一个和第三个注释掉
 
-	// d1.Init(&d1, 2024, 3, 31);
-	d1.Init(2025, 5, 20);
-	d1.Print();
+	Date d1; // 调用默认构造函数
+	d1.Print(); // 输出：1/1/1
 
-	d2.Init(2026, 5, 20);
+	Date d2(2025, 11, 25); // 调用带参的构造函数
 	d2.Print();
+
+	//注意：如果通过无参构造函数创建对象时，对象后面不用跟括号，否则编译器无法
+	//区分这里是函数声明还是实例化对象
+
+	/*Date d3(2007, 6, 18);
+	d3.Print();*/
 
 	return 0;
 }
