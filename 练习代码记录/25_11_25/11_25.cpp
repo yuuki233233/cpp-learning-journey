@@ -308,6 +308,13 @@ public:
 		_top = 0;
 	}
 
+	~Stack()
+	{
+		free(_a);
+		_a == nullptr;
+		_capacity = _top = 0;
+	}
+
 private:
 	STDataType* _a;
 	size_t _capacity;
@@ -319,7 +326,7 @@ class MyQueue
 {
 public:
 	//编译器默认生成MyQueue的构造函数调用了Stack的构造，完成了两个成员的初始化
-
+	//编译器默认生成MyQueue的析构函数调用了Stack的析构，释放的Stack内部的资源
 private:
 	Stack pushst;
 	Stack popst;
