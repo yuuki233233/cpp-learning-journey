@@ -52,7 +52,76 @@
 //	return 0;
 //}
 
-#define _CRT_SECURE_NO_WARNINGS
+//#define _CRT_SECURE_NO_WARNINGS
+//#include<iostream>
+//using namespace std;
+//
+//class Date
+//{
+//public:
+//	Date(int year = 1, int month = 1, int day = 1)
+//	{
+//		_year = year;
+//		_month = month;
+//		_day = day;
+//	}
+//
+//	void Print()
+//	{
+//		cout << _year << "/" << _month << "/" << _day << endl;
+//	}
+//
+//	bool operator==(const Date& d)
+//	{
+//		return _year == d._year
+//			&& _month == d._month
+//			&& _day == d._day;
+//	}
+//
+//	Date& operator++()
+//	{
+//		cout << "前置++" << endl;
+//
+//		return *this;
+//	}
+//
+//	Date operator++(int)
+//	{
+//		Date tmp;
+//		cout << "后置++" << endl;
+//
+//		return tmp;
+//	}
+//
+//private:
+//	int _year;
+//	int _month;
+//	int _day;
+//};
+//
+//
+//
+//
+//int main()
+//{
+//	Date d1(2025, 11, 26);
+//	Date d2(2025, 11, 27);
+//
+//	// 运算符重载函数可以显示调用
+//	d1.operator==(d2);
+//
+//	//编译器会转变为d1.operator==(d2);
+//	d1 == d2;
+//
+//	//编译器会转换为d1.operator++();
+//	++d1;
+//
+//	//编译器会转换为d1.operator++(0);
+//	d1++;
+//
+//	return 0;
+//}
+
 #include<iostream>
 using namespace std;
 
@@ -71,26 +140,11 @@ public:
 		cout << _year << "/" << _month << "/" << _day << endl;
 	}
 
-	bool operator==(const Date& d)
+	Date(const Date& d)
 	{
-		return _year == d._year
-			&& _month == d._month
-			&& _day == d._day;
-	}
-
-	Date& operator++()
-	{
-		cout << "前置++" << endl;
-
-		return *this;
-	}
-
-	Date operator++(int)
-	{
-		Date tmp;
-		cout << "后置++" << endl;
-
-		return tmp;
+		_year = d._year;
+		_month = d._month;
+		_day = d._day;
 	}
 
 private:
@@ -99,25 +153,21 @@ private:
 	int _day;
 };
 
-
-
+void Func1(Date& d)
+{
+	cout << &d << endl;
+	d.Print();
+}
 
 int main()
 {
-	Date d1(2025, 11, 26);
-	Date d2(2025, 11, 27);
+	Date d1(2025, 11, 16);
+	d1.Print();
 
-	// 运算符重载函数可以显示调用
-	d1.operator==(d2);
+	Func1(d1);
 
-	//编译器会转变为d1.operator==(d2);
-	d1 == d2;
-
-	//编译器会转换为d1.operator++();
-	++d1;
-
-	//编译器会转换为d1.operator++(0);
-	d1++;
+	Date d2(d1);
+	d2.Print();
 
 	return 0;
 }
