@@ -140,6 +140,7 @@ public:
 		cout << _year << "/" << _month << "/" << _day << endl;
 	}
 
+	//这里必须是引用，如果直接调用会导致无穷递归调用
 	Date(const Date& d)
 	{
 		_year = d._year;
@@ -153,7 +154,7 @@ private:
 	int _day;
 };
 
-void Func1(Date& d)
+void Func1(Date d)
 {
 	cout << &d << endl;
 	d.Print();
