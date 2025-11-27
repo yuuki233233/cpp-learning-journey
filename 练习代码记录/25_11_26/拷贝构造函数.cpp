@@ -173,73 +173,73 @@
 //	return 0;
 //}
 
-#include<iostream>
-using namespace std;
-
-typedef int STDataType;
-class Stack
-{
-public:
-	Stack(int n = 4)
-	{
-		_a = (STDataType*)malloc(sizeof(STDataType) * n);
-		if (nullptr == _a)
-		{
-			perror("malloc申请空间失败");
-			return;
-		}
-		_capacity = n;
-		_top = 0;
-	}
-
-	// st2(st1)
-	Stack(const Stack& st)
-	{
-		cout << "Stack(const Stack& st)" << endl;
-
-		// 需要对_a指向资源创建同样大的资源再拷贝值
-		_a = (STDataType*)malloc(sizeof(STDataType) * st._capacity);
-		if (nullptr == _a)
-		{
-			perror("malloc申请空间失败!!!");
-			return;
-		}
-		memcpy(_a, st._a, sizeof(STDataType) * st._top);
-		_top = st._top;
-		_capacity = st._capacity;
-	}
-
-	void Push(STDataType x)
-	{
-		if (_top == _capacity)
-		{
-			int newcapacity = _capacity * 2;
-			STDataType* tmp = (STDataType*)realloc(_a, newcapacity *
-				sizeof(STDataType));
-			if (tmp == NULL)
-			{
-				perror("realloc fail");
-				return;
-			}
-			_a = tmp;
-			_capacity = newcapacity;
-		}
-		_a[_top++] = x;
-
-	}
-
-	~Stack()
-	{
-		cout << "~Stack()" << endl;
-		free(_a);
-		_a = nullptr;
-		_top = _capacity = 0;
-	}
-private:
-	STDataType* _a;
-	size_t _capacity;
-	size_t _top;
-};
+//#include<iostream>
+//using namespace std;
+//
+//typedef int STDataType;
+//class Stack
+//{
+//public:
+//	Stack(int n = 4)
+//	{
+//		_a = (STDataType*)malloc(sizeof(STDataType) * n);
+//		if (nullptr == _a)
+//		{
+//			perror("malloc申请空间失败");
+//			return;
+//		}
+//		_capacity = n;
+//		_top = 0;
+//	}
+//
+//	// st2(st1)
+//	Stack(const Stack& st)
+//	{
+//		cout << "Stack(const Stack& st)" << endl;
+//
+//		// 需要对_a指向资源创建同样大的资源再拷贝值
+//		_a = (STDataType*)malloc(sizeof(STDataType) * st._capacity);
+//		if (nullptr == _a)
+//		{
+//			perror("malloc申请空间失败!!!");
+//			return;
+//		}
+//		memcpy(_a, st._a, sizeof(STDataType) * st._top);
+//		_top = st._top;
+//		_capacity = st._capacity;
+//	}
+//
+//	void Push(STDataType x)
+//	{
+//		if (_top == _capacity)
+//		{
+//			int newcapacity = _capacity * 2;
+//			STDataType* tmp = (STDataType*)realloc(_a, newcapacity *
+//				sizeof(STDataType));
+//			if (tmp == NULL)
+//			{
+//				perror("realloc fail");
+//				return;
+//			}
+//			_a = tmp;
+//			_capacity = newcapacity;
+//		}
+//		_a[_top++] = x;
+//
+//	}
+//
+//	~Stack()
+//	{
+//		cout << "~Stack()" << endl;
+//		free(_a);
+//		_a = nullptr;
+//		_top = _capacity = 0;
+//	}
+//private:
+//	STDataType* _a;
+//	size_t _capacity;
+//	size_t _top;
+//};
 
 //int main()
 //{
@@ -255,10 +255,81 @@ private:
 //}
 
 
-void func(const Stack& st)
-{
+//void func(const Stack& st)
+//{
+//
+//}
+//
+//int main()
+//{
+//	Stack st1;
+//	st1.Push(1);
+//	st1.Push(2);
+//
+//	func(st1);
+//}
 
-}
+
+#include<iostream>
+using namespace std;
+
+class Stack
+{
+public:
+	Stack(int n = 4)
+	{
+		_a = (int*)malloc(sizeof(int) * n);
+		if (_a == nullptr)
+		{
+			perror("malloc fail");
+			return;
+		}
+		_capacity = n;
+		_pos = 0;
+	}
+
+	Stack(const Stack& st)
+	{
+		_a = (int*)malloc(sizeof(int) * st._capacity);
+		if (_a == nullptr)
+		{
+			perror("malloc fail");
+			return;
+		}
+		_capacity = st._capacity;
+		_pos = st._pos;
+	}
+
+	void Push(int x)
+		{
+				if (_pos == _capacity)
+				{
+					int newcapacity = _capacity * 2;
+					int* tmp = (int*)realloc(_a, newcapacity * sizeof(int));
+					if (tmp == NULL)
+					{
+						perror("realloc fail");
+						return;
+					}
+					_a = tmp;
+					_capacity = newcapacity;
+				}
+				_a[_pos++] = x;
+		}
+
+	~Stack()
+	{
+		free(_a);
+		_a = nullptr;
+		_capacity = _pos = 0;
+	}
+
+private:
+	int* _a;
+	int _capacity;
+	int _pos;
+};
+
 
 int main()
 {
@@ -266,6 +337,8 @@ int main()
 	st1.Push(1);
 	st1.Push(2);
 
-	func(st1);
-}
+	Stack s2(st1);
+	Stack s2 = st1;
 
+	return 0;
+}
