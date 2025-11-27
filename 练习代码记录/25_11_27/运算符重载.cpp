@@ -122,12 +122,16 @@ public:
 		cout << _year << "/" << _month << "/" << _day << endl;
 	}
 
-	//重载未全局的面临对象访问私有成员变量的问题
-	bool operator==(const Date& d)
+	// 传引用返回减少拷贝
+	// d1 = d2 = d3
+	Date& operator=(const Date& d)
 	{
-		return _year == d._year
-			&& _month == d._month
-			&& _day == d._day;
+		_year = d._year;
+		_month = d._month;
+		_day = d._day;
+
+		// d1=d2表达式的返回对象应该为d1，也就是*this
+		return *this;
 	}
 
 private:
@@ -139,14 +143,19 @@ private:
 int main()
 {
 	Date d1(2025, 11, 26);
-	Date d2(2025, 11, 27);
+	//拷贝构造
+	Date d2 = d1;
 
-	//赋值重载
-	d2 = d1;
+	
+	Date d3(2025, 11, 27);
+	//拷贝运算符重载
+	d1 = d3;
 
 	//拷贝构造
-	Date d3(d2);
 	Date d4 = d3;
+
+	//连续赋值
+	d1 = d2 = d3;
 
 	return 0;
 }
