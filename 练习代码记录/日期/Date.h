@@ -39,10 +39,10 @@ public:
 	 Date& operator+=(int day);
 	 Date operator+(int day);
 
-	 /*Date& operator-=(int day);
+	 Date& operator-=(int day);
 	 Date operator-(int day);
 
-	 int operator-(const Date& d);*/
+	 int operator-(const Date& d);
 
 private:
 	int _year;
