@@ -1,30 +1,5 @@
 //#define _CRT_SECURE_NO_WARNINGS
-//#include<iostream>
-//using namespace std;
-//
-//class Date
-//{
-//public:
-//	Date(int year, int month, int day)
-//		:_year(year)
-//		,_month(month)
-//		,_day(day)
-//		,arr((int*)malloc(sizeof(int) * 4))
-//	{
-//		if (arr == nullptr)
-//		{
-//			perror("malloc fail!");
-//			exit(1);
-//		}
-//	}
-//
-//private:
-//	int _year;
-//	int _month;
-//	int _day;
-//	int* arr;
-//};
-//
+
 //class A
 //{
 //public:
@@ -112,65 +87,6 @@
 //}
 
 
-//类类型
-//----------------------------------------------------------------------------
-#include<iostream>
-using namespace std;
-
-class A
-{
-public:
-	A(int a1, int a2 = 0)
-		:_a1(a1)
-		,_a2(a2)
-	{
-		cout << "A(int a1 = 0, int a2 = 0)" << endl;
-	}
-
-	A(const A& aa)
-		:_a1(aa._a1)
-	{
-		cout << "A(const A& aa)" << endl;
-	}
-
-	A& operator=(const A& aa)
-	{
-		_a1 += 100;
-
-		return *this;
-	}
-
-private:
-	int _a1 = 1;
-	int _a2 = 2;
-};
-
-int main()
-{
-	A* p1 = new A(1); //必须默认构造
-	A* p2 = new A(2, 2);
-	//A* p3 = new A[3]; //默认默认构造则报错
-
-
-	//第一种写法
-	A aa1(1, 1);
-	A aa2(2, 2);
-	A aa3(3, 3);
-	A* p3 = new A[3]{ aa1, aa2, aa3 };//拷贝构造
-
-	//第二种写法:匿名构造
-	//编译器直接优化成直接构造
-	A* p4 = new A[3]{ A(1, 1), A(2, 2), A(3, 3) };
-
-	//第三种写法：隐式类型转换
-	//编译器直接优化成直接构造
-	A* p5 = new A[3]{ {1,1},{2,2},{3,3} };
-
-	return 0;
-}
-//----------------------------------------------------------------------------
-
-
 //内置类型
 //----------------------------------------------------------------------------
 //int main()
@@ -190,6 +106,66 @@ int main()
 //	delete p3;
 //	delete[] p4;
 //	delete[] p5;
+//	return 0;
+//}
+//----------------------------------------------------------------------------
+
+
+
+//类类型
+//----------------------------------------------------------------------------
+//#include<iostream>
+//using namespace std;
+//
+//class A
+//{
+//public:
+//	A(int a1, int a2 = 0)
+//		:_a1(a1)
+//		,_a2(a2)
+//	{
+//		cout << "A(int a1 = 0, int a2 = 0)" << endl;
+//	}
+//
+//	A(const A& aa)
+//		:_a1(aa._a1)
+//	{
+//		cout << "A(const A& aa)" << endl;
+//	}
+//
+//	A& operator=(const A& aa)
+//	{
+//		_a1 += 100;
+//
+//		return *this;
+//	}
+//
+//private:
+//	int _a1 = 1;
+//	int _a2 = 2;
+//};
+//
+//int main()
+//{
+//	A* p1 = new A(1); //必须默认构造
+//	A* p2 = new A(2, 2);
+//	//A* p3 = new A[3]; //默认默认构造则报错
+//
+//
+//	//第一种写法
+//	A aa1(1, 1);
+//	A aa2(2, 2);
+//	A aa3(3, 3);
+//	A* p3 = new A[3]{ aa1, aa2, aa3 };//拷贝构造
+//
+//	//第二种写法:匿名构造
+//	//编译器直接优化成直接构造
+//	A* p4 = new A[3]{ A(1, 1), A(2, 2), A(3, 3) };
+//
+//	//第三种写法：隐式类型转换
+//	//编译器直接优化成直接构造
+//	A* p5 = new A[3]{ {1,1},{2,2},{3,3} };
+//
 //	return 0;
 //}
 //----------------------------------------------------------------------------
@@ -257,3 +233,57 @@ int main()
 //	return 0;
 //}
 //----------------------------------------------------------------------------
+
+#include<iostream>
+using namespace std;
+
+class A
+{
+public:
+	~A()
+	{
+		cout << "~A()" << endl;
+	}
+
+private:
+	int _a1 = 1;
+	int _a2 = 2;
+};
+
+class B
+{
+private:
+	int _b1 = 1;
+	int _b2 = 2;
+};
+
+
+int main()
+{
+	//内置类型
+	// 
+	// 
+	//不会报错(内核是)：
+	//new operator[]最终调用malloc
+	//delete operator[]最终调用free
+	int* p1 = new int[10];  // -> malloc
+	delete p1;				// -> free
+	free(p1);
+ 
+
+
+	//自定义类型
+	// 
+	// 
+	//因为B* p1没有调用析构函数，析构被编译器优化掉
+	//因为没有析构，前面没有开4个字节，一共80个字节且释放地方相同，所以可以正常释放
+	B* p1 = new B[10];
+	delete p1;
+
+	//这里由于调用了析构函数，在创建的80字节内存前加了4字节，一共有84字节
+	//这里只用delete却没有用delete[]，会让p2指向第80字节，释放空间时因为释放位置不对而崩溃
+	A* p2 = new A[10];
+	delete p2;
+}
+
+
