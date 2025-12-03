@@ -1,4 +1,21 @@
 //#define _CRT_SECURE_NO_WARNINGS
+#include<iostream>
+#include<string>
+using namespace std;
+
+int main()
+{
+	string s1("hello world");
+
+	for (size_t i = 0; i < s1.size(); i++)
+	{
+		cout << s1[i] << " ";
+	}
+	cout << endl;
+
+	return 0;
+}
+
 //#include<iostream>
 //#include<string>
 //using namespace std;
@@ -50,6 +67,30 @@
 //	return 0;
 //}
 
+//#include<iostream>
+//#include<list>
+//using namespace std;
+//
+//int main()
+//{
+//	list<int> lt{ 1,2,3,4,5 };
+//	list<int>::iterator lit = lt.begin();
+//	while (lit != lt.end())
+//	{
+//		cout << *lit << " ";
+//		++lit;
+//	}
+//	cout << endl;
+//
+//	//赋值，自动迭代，自动判断结束(底层还是迭代器)
+//	for (auto li : lt)
+//	{
+//		cout << li << " ";
+//	}
+//	cout << endl;
+//
+//	return 0;
+//}
 
 //#include<iostream>
 //using namespace std;
@@ -80,40 +121,52 @@
 //}
 
 
-#include<iostream>
-#include<string>
-using namespace std;
+//#include<iostream>
+//#include<string>
+//using namespace std;
+//
+//int main()
+//{
+//	//C++98遍历
+//	int array1[] = { 1,2,3,4,5 };
+//	for (int i = 0; i < sizeof(array1) / sizeof(array1[0]); ++i)
+//	{
+//		array1[i] *= 2;
+//	}
+//	for (int i = 0; i < sizeof(array1) / sizeof(array1[0]); ++i)
+//	{
+//		cout << array1[i] << " ";
+//	}
+//	cout << endl;
+//
+//
+//	//C++11遍历
+//	int array2[] = { 1,2,3,4,5 };
+//	for (auto& e : array2)
+//		e *= 2;
+//
+//	for (auto& e : array2)
+//		cout << e << " ";
+//	cout << endl;
+//
+//	string str("hello world");
+//	for (auto ch : str)
+//	{
+//		cout << ch << " ";
+//	}
+//	cout << endl;
+//
+//	return 0;
+//}
 
-int main()
-{
-	//C++98遍历
-	int array1[] = { 1,2,3,4,5 };
-	for (int i = 0; i < sizeof(array1) / sizeof(array1[0]); ++i)
-	{
-		array1[i] *= 2;
-	}
-	for (int i = 0; i < sizeof(array1) / sizeof(array1[0]); ++i)
-	{
-		cout << array1[i] << " ";
-	}
-	cout << endl;
 
-
-	//C++11遍历
-	int array2[] = { 1,2,3,4,5 };
-	for (auto& e : array2)
-		e *= 2;
-
-	for (auto& e : array2)
-		cout << e << " ";
-	cout << endl;
-
-	string str("hello world");
-	for (auto ch : str)
-	{
-		cout << ch << " ";
-	}
-	cout << endl;
-
-	return 0;
-}
+//////string类的常用接口
+//#include<iostream>
+//using namespace std;
+//
+//int main()
+//{
+//	
+//
+//	return 0;
+//}
