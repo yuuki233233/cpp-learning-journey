@@ -50,27 +50,70 @@
 //	return 0;
 //}
 
-#include<iostream>
-using namespace std;
 
-int func1()
-{
-	return 10;
-}
+//#include<iostream>
+//using namespace std;
+//
+//int func1()
+//{
+//	return 10;
+//}
+//
+//int main()
+//{
+//	int a = 10;
+//	auto b = a;
+//	auto c = 'a';
+//	auto d = func1();
+//
+//
+//	//auto必须初始化
+//	//auto e;
+//
+//
+//	//识别auto类型
+//	cout << typeid(b).name() << endl; //int
+//	cout << typeid(c).name() << endl; //char
+//	cout << typeid(d).name() << endl; //int
+//	
+//	return 0;
+//}
+
+
+#include<iostream>
+#include<string>
+using namespace std;
 
 int main()
 {
-	int a = 10;
-	auto b = a;
-	auto c = 'a';
-	auto d = func1();
+	//C++98遍历
+	int array1[] = { 1,2,3,4,5 };
+	for (int i = 0; i < sizeof(array1) / sizeof(array1[0]); ++i)
+	{
+		array1[i] *= 2;
+	}
+	for (int i = 0; i < sizeof(array1) / sizeof(array1[0]); ++i)
+	{
+		cout << array1[i] << " ";
+	}
+	cout << endl;
 
-	//auto必须初始化
-	//auto e;
 
-	cout << typeid(b).name() << endl; //int
-	cout << typeid(c).name() << endl; //char
-	cout << typeid(d).name() << endl; //int
+	//C++11遍历
+	int array2[] = { 1,2,3,4,5 };
+	for (auto& e : array2)
+		e *= 2;
+
+	for (auto& e : array2)
+		cout << e << " ";
+	cout << endl;
+
+	string str("hello world");
+	for (auto ch : str)
+	{
+		cout << ch << " ";
+	}
+	cout << endl;
 
 	return 0;
 }
