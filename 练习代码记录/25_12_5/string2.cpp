@@ -42,11 +42,54 @@ void Test03()
 	cout << endl;
 }
 
+void Test04()
+{
+	//头插
+	string s1("hello world");
+	s1.insert(0, "x");
+	cout << s1 << endl << endl;
+
+	//头插另一种方式
+	char ch = 'y';
+	s1.insert(0, 2, ch);
+	cout << s1 << endl << endl;
+
+	//头插另一种
+	s1.insert(s1.begin(), 'n');
+	cout << s1 << endl << endl;
+
+	//尾插
+	s1.insert(s1.end(), 'm');
+	cout << s1 << endl << endl;
+}
+
+void Test05()
+{
+	//erase固定位置删除
+
+	string s1("hello world");
+	//头删
+	s1.erase(0, 1);
+	cout << s1 << endl << endl;
+
+	//尾删
+	s1.erase(s1.size() - 1, 1);
+	cout << s1 << endl << endl;
+
+}
+
+void Test06()
+{
+
+}
+
 int main()
 {
-	Test01();
-	Test02();
-	Test03();
+	//Test01();
+	//Test02();
+	//Test03();
+	//Test04();
+	Test05();
 
 	return 0;
 }
