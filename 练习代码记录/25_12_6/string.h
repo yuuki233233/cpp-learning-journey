@@ -89,11 +89,16 @@ namespace yuuki
 		string& operator+=(char ch);
 		string& operator+=(const char* str);
 
+		void insert(size_t pos, char ch);
+		void insert(size_t pos, const char* str);
+		void erase(size_t pos, size_t = npos);
 
 	private:
 		char* _str;
 		int _size;
 		int _capacity;
+
+		static const size_t npos;
 	};
 
 	void test_string1();
