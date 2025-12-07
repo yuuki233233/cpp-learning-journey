@@ -59,6 +59,8 @@ namespace yuuki
 		return *this;
 	}
 
+
+	//插入字符
 	void string::insert(size_t pos, char ch)
 	{
 		assert(pos <= _size);
@@ -68,61 +70,134 @@ namespace yuuki
 			reserve(_capacity == 0 ? 4 : _capacity * 2);
 		}
 
+		/*
+		方法1：
+
 		//挪动数据
-		size_t end = _size;
-		while (end >= pos)
+		int end = _size;
+		//隐式类型转化<---pos(size_t)===end(int)
+		//当end为-1时，因为pos为无符号，end会转化为无符号进行比较
+		while (end >= (int)pos)
 		{
 			_str[end + 1] = _str[end];
 			--end;
 		}
 
+		*/
+
+		//方法2：
+		size_t end = _size + 1;
+		while (end > pos)
+		{
+			_str[end] = _str[end - 1];
+			--end;
+		}
+
+
 		_str[pos] = ch;
 		++_size;
 	}
 
-	//void string::insert(size_t pos, const char* str);
-	//void string::erase(size_t pos, size_t);
-
-	void test_string1()
+	//插入字符串
+	void string::insert(size_t pos, const char* str)
 	{
-		string s1;
-		string s2("hello world");
-		cout << s1.c_str() << endl;
-		cout << s2.c_str() << endl;
+		assert(pos < _size);
 
-		for (size_t i = 0; i < s2.size(); ++i)
+		size_t len = strlen(str);
+		if (_size + len > _capacity)
 		{
-			s2[i] += 2;
+			//二倍扩容（避免频繁扩容）
+			reserve(_size + len > 2 * _capacity ? _size + len : 2 * _capacity);
 		}
-		cout << s2.c_str() << endl;
 
-		for (auto e : s2)
+		size_t end = _size + len;
+		//注意：使用pos+len会出现问题
+		while (end > pos + len - 1)
 		{
-			cout << e << " ";
+			_str[end] = _str[end - len];
+			--end;
 		}
-		cout << endl;
 
-		//char* it = s2.begin();
-		string::iterator it = s2.begin();
-		while (it != s2.end())
+		for (size_t i = 0; i < len; ++i)
 		{
-			cout << *it << " ";
-			++it;
+			_str[pos + i] = str[i];
 		}
-		cout << endl;
 	}
 
-	void test_string2()
+	//删除
+	void string::erase(size_t pos, size_t len)
 	{
-		string s1("hello world");
-		s1 += 'x';
-		s1 += '#';
-		cout << s1.c_str() << endl;
+		assert(pos < _size);
 
-		s1 += "hello yuuki";
-		cout << s1.c_str() << endl;
+		if (len >= _size - pos)
+		{
+			_str[pos] = '\0';
+			_size = pos;
+		}
+		else
+		{
+			for (size_t i = pos + len; i < _size; ++i)
+			{
+				_str[i] = _str[i + len];
+			}
+			_size -= len;
+		}
+	}
 
-		s1.insert(5, '$');
-		cout << s1.c_str() << endl;
+	size_t string::find(char ch, size_t pos)
+	{
+		for (size_t i = 0; i < _size; ++i)
+		{
+			if (_str[i] == ch)
+			{
+				return i;
+			}
+		}
+
+		return npos;
+	}
+
+	size_t string::find(char* str, size_t pos)
+	{
+		assert(pos < _size);
+
+		const char* tmp = strstr(_str + pos, str);
+		if (tmp == nullptr)
+		{
+			return npos;
+		}
+		else
+		{
+			return tmp - _str;
+		}
+	}
+
+	string string::substr(size_t pos, size_t len)
+	{
+		assert(pos < _size);
+
+		if (len > _size - pos)
+		{
+			len = _size - pos;
+		}
+
+		string sub;
+		sub.reserve(len);
+		for (size_t i = 0; i < len; ++i)
+		{
+			sub += _str[pos + i];
+		}
+
+		return sub;
+	}
+
+	string& string::operator=(const string& str)
+	{
+		delete[] _str;
+		char* ptr = new char[str._capacity + 1];
+		_size = str._size;
+		_capacity = str._capacity;
+
+		return *this;
 	}
 }
