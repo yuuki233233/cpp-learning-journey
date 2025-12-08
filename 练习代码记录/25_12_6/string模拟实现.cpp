@@ -174,5 +174,13 @@ namespace yuuki
 
 	
 
-	
+	string& string::operator=(const string& str)
+	{
+		delete[] _str;
+		char* ptr = new char[str._capacity + 1];
+		_size = str._size;
+		_capacity = str._capacity;
+
+		return *this;
+	}
 }
