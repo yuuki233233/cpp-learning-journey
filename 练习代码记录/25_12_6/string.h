@@ -117,5 +117,8 @@ namespace yuuki
 		static const size_t npos;
 	};
 
-	
+	void test_string1();
+	void test_string2();
+	void test_string3();
+	void test_string4();
 }
