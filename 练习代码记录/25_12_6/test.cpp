@@ -72,7 +72,21 @@ namespace yuuki
 		cout << s4.c_str() << endl;
 	}
 
-	
+	void test_string4()
+	{
+		string s1("test.cpp.zip");
+		size_t pos = s1.find('.');
+		string suffix = s1.substr(pos);
+		cout << suffix.c_str() << endl;
+
+		//检测编译器优化，如果编译器不优化会释放同一个空间
+		string s2(s1);
+		cout << suffix.c_str() << endl;
+
+		//默认调用浅拷贝，会导致内存泄漏
+		s1 = s2;
+
+	}
 }
 
 int main()
