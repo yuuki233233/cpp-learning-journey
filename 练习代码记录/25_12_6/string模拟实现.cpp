@@ -220,13 +220,21 @@ namespace yuuki
 	//复用方法(上面的比较需满足下列比较条件)
 	bool operator<=(const string& s1, const string& s2)
 	{
-		
+		return s1 < s2 || s1 == s2;
 	}
 
-	bool operator>(const string& s1, const string& s2);
-	bool operator>=(const string& s1, const string& s2);
+	bool operator>(const string& s1, const string& s2)
+	{
+		return !(s1 <= s2);
+	}
 
-
+	bool operator>=(const string& s1, const string& s2)
+	{
+		return !(s1 < s2);
+	}
 	
-	bool operator!=(const string& s1, const string& s2);
+	bool operator!=(const string& s1, const string& s2)
+	{
+		return !(s1 == s2);
+	}
 }
