@@ -200,6 +200,7 @@ namespace yuuki
 		{
 			delete[] _str;
 			_str = new char[str._capacity + 1];
+			strcpy(_str, str._str);
 			_size = str._size;
 			_capacity = str._capacity;
 		}

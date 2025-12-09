@@ -127,4 +127,5 @@ namespace yuuki
 	void test_string2();
 	void test_string3();
 	void test_string4();
+	void test_string5();
 }

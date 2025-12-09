@@ -77,10 +77,11 @@ namespace yuuki
 		string s1("test.cpp.zip");
 		size_t pos = s1.find('.');
 		//编译器优化(substr中申请了空间并返回)
+		//检测编译器优化，如果编译器不优化会释放同一个空间
 		string suffix = s1.substr(pos);
 		cout << suffix.c_str() << endl;
 
-		//检测编译器优化，如果编译器不优化会释放同一个空间
+		//拷贝构造
 		string s2(s1);
 		cout << s2.c_str() << endl;
 
@@ -92,6 +93,21 @@ namespace yuuki
 		s1 = s1;
 		cout << s1.c_str() << endl;
 	}
+
+	void test_string5()
+	{
+		string s1("hello world");
+		string s2("hello world");
+
+		cout << (s1 < s2) << endl;	//0
+		cout << (s1 <= s2) << endl;	//1
+
+		//
+		cout << (s1 < "hello world") << endl;
+		cout << ("hello world" <= s2) << endl;
+
+
+	}
 }
 
 int main()
@@ -99,6 +115,8 @@ int main()
 	// yuuki::test_string1(); 
 	//yuuki::test_string2();
 	// yuuki::test_string3();
-	yuuki::test_string4();
+	//yuuki::test_string4();
+	yuuki::test_string5();
+
 	return 0;
 }
