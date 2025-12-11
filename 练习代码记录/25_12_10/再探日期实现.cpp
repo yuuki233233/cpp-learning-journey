@@ -18,9 +18,18 @@ void test_date01()
 	d3.Print();
 }
 
+void test_date02()
+{
+	Date d1(2025, 12, 10);
+	Date d2(2025, 12, 10);
+
+	
+}
+
 int main()
 {
-	test_date01();
+	//test_date01();
+	test_date02();
 
 	return 0;
 }
