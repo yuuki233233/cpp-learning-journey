@@ -6,28 +6,21 @@ using namespace std;
 class Date
 {
 public:
-	/*bool check_date()
-	{
-		if (_month > 0 && _month < 13)
-		{
-			if()
-			return true;
-		}
-	}*/
+	bool CheckDate();
 
 	Date(int year = 1900, int month = 1, int day = 1)
 		:_year(year)
 		, _month(month)
 		, _day(day)
 	{
-		/*if (!check_date())
+		if (!CheckDate())
 		{
 			cout << "非法日期";
 			Print();
-		}*/
+		}
 	}
 
-	int git_month_date(int year, int month)
+	int GetMonthDay(int year, int month)
 	{
 		assert(month > 0 && month < 13);
 
