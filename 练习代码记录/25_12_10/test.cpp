@@ -1,12 +1,13 @@
 #define _CRT_SECURE_NO_WARNINGS
 #include"date.h"
 
-namespace yuuki
+Date& Date::operator=(const Date& d)
 {
-	void test_date01()
-	{
-		Date d1(2025, 12, 10);
-		d1.Print();
-	}
+	_year = d._year;
+	_month = d._month;
+	_day = d._day;
 
+	return *this;
 }
+
+
