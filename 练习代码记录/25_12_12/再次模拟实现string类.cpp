@@ -74,5 +74,14 @@ namespace yuuki233233
 		return _str[pos];
 	}
 
+	void string::insert(size_t pos, char ch);
+	void string::insert(size_t pos, const char* str);
+	void string::erase(size_t pos, size_t = npos);
 
+	size_t string::find(char ch, size_t pos = 0);
+	size_t string::find(char* str, size_t pos = 0);
+	string string::substr(size_t pos = 0, size_t len = npos);
+
+	ostream& operator<<(ostream& out, const string& s);
+	istream& operator>>(istream& in, string& s);
 }
