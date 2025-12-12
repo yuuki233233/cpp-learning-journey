@@ -65,18 +65,26 @@ namespace yuuki233233
 		const char& operator[](size_t pos) const;
 
 		void reserve(size_t n);
-
 		void push_back(char ch);
 		void append(const char* str);
-
 		string& operator+=(char ch);
 		string& operator+=(const char* str);
 
+		void insert(size_t pos, char ch);
+		void insert(size_t pos, const char* str);
+		void erase(size_t pos, size_t = npos);
 
-
+		size_t find(char ch, size_t pos = 0);
+		size_t find(char* str, size_t pos = 0);
+		string substr(size_t pos = 0, size_t len = npos);
 	private:
 		char* _str;
 		int _size;
 		int _capacity;
+
+		static int npos;
 	};
+
+	ostream& operator<<(ostream& out, const string& s);
+	istream& operator>>(istream& in, string& s);
 }
