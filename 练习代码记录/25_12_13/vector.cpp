@@ -31,9 +31,47 @@ void test_vector01()
 	cout << endl;
 }
 
+void test_vector02()
+{
+	vector<int> v(10, 1);
+	v.reserve(20);
+	cout << v.size() << endl;		//10
+	cout << v.capacity() << endl;	//20
+
+	v.reserve(15);
+	cout << v.size() << endl;		//10
+	cout << v.capacity() << endl;	//20
+
+	v.reserve(5);
+	cout << v.size() << endl;		//10
+	cout << v.capacity() << endl;	//20
+}
+
+void test_vector03()
+{
+	vector<int> v1(10, 1);
+	v1.reserve(20);
+	cout << v1.size() << endl;		//10
+	cout << v1.capacity() << endl;	//20
+
+	v1.resize(15, 2);
+	cout << v1.size() << endl;		//15
+	cout << v1.capacity() << endl;	//20
+
+	v1.resize(25, 3);				
+	cout << v1.size() << endl;		//25
+	cout << v1.capacity() << endl;	//30
+
+	v1.resize(5);
+	cout << v1.size() << endl;		//5
+	cout << v1.capacity() << endl;	//30
+}
+
 int main()
 {
-	test_vector01();
+	//test_vector01();
+	//test_vector02();
+	test_vector03();
 
 	return 0;
 }
