@@ -1,12 +1,16 @@
 #define _CRT_SECURE_NO_WARNINGS
 #include"string.h"
 
-namespace yuuki
+namespace yuuki233233
 {
+	const size_t string::npos = -1;
+
 	void string::reserve(size_t n)
 	{
-		if (_capacity < n)
+		if (n > _capacity)
 		{
+			string s1("hello world");
+			string s2("hello yuuki");
 			char* tmp = new char[n + 1];
 			strcpy(tmp, _str);
 			delete[] _str;
@@ -21,73 +25,190 @@ namespace yuuki
 		{
 			reserve(_capacity == 0 ? 4 : _capacity * 2);
 		}
-
 		_str[_size] = ch;
-		_size++;
+		++_size;
 		_str[_size] = '\0';
 	}
 
-	string& string::operator+=(char ch)
-	{
-		push_back(ch);
-
-		return *this;
-	}
-
-	void string::append(char* str)
+	void string::append(const char* str)
 	{
 		size_t len = strlen(str);
 		if (_size + len > _capacity)
 		{
 			reserve(_size + len > _capacity * 2 ? _size + len : _capacity * 2);
 		}
+
 		strcpy(_str + _size, str);
 		_size += len;
 	}
 
-
-	string& string::operator+=(char* str)
+	string& string::operator+=(char ch)
 	{
-		append(str);
-
+		push_back(ch);
 		return *this;
 	}
 
-	void test_string1()
+	string& string::operator+=(const char* str)
 	{
-		string s1;
-		string s2("hello world");
-		cout << s2.c_str() << endl;
+		append(str);
+		return *this;
+	}
 
-		for (size_t i = 0; i < s2.size(); ++i)
+	size_t string::size() const
+	{
+		return _size;
+	}
+
+	size_t string::capacity() const
+	{
+		return _capacity;
+	}
+
+	char& string::operator[](size_t pos)
+	{
+		assert(pos < _size);
+
+		return _str[pos];
+	}
+
+	const char& string::operator[](size_t pos) const
+	{
+		assert(pos < _size);
+
+		return _str[pos];
+	}
+
+	void string::insert(size_t pos, char ch)
+	{
+		assert(pos < _size);
+		if (_size == _capacity)
 		{
-			s2[i] += 2;
+			reserve(_capacity == 0 ? 4 : _capacity * 2);
 		}
-		cout << s2.c_str() << endl;
 
-		for (auto e : s2)
+		size_t end = _size + 1;
+		while (end > pos)
 		{
-			e += 2;
+			_str[end] = _str[end - 1];
+			--end;
 		}
-		cout << s2.c_str() << endl;
 
-		string::iterator it = s2.begin();
-		while (it < s2.end())
+		_str[pos] = ch;
+		++_size;
+	}
+
+	void string::insert(size_t pos, const char* str)
+	{
+		assert(pos < _size);
+
+		int len = strlen(str);
+		size_t end = _size + len;
+		if (end > _capacity * 2)
 		{
-			cout << *it << " ";
-			it++;
+			reserve(end > _capacity * 2 ? end : _capacity * 2);
+		}
+		while (end > pos)
+		{
+			_str[end] = _str[end - pos];
+			--end;
+		}
+		for (int i = 0; i < len; i++)
+		{
+			_str[len + i] = _str[len + i + 1];
 		}
 	}
 
-	void test_string2()
+	void string::erase(size_t pos, size_t len)
 	{
-		string s1("hello world");
+		assert(pos < _size);
 
-		s1.push_back('&');
-		cout << s1.c_str() << endl;
+		if (len >= _size - pos)
+		{
+			_str[pos] = '\0';
+			_size = pos;
+		}
+		else
+		{
+			for (size_t i = pos + len; i < _size; ++i)
+			{
+				_str[i] = _str[i + len];
+			}
+			_size -= len;
+		}
+	}
 
-		s1 += '#';
-		cout << s1.c_str() << endl;
+	size_t string::find(char ch, size_t pos)
+	{
+		assert(pos < _size);
 
+		for (int i = 0; i < _size; ++i)
+		{
+			if (_str[i] == ch)
+			{
+				return i;
+			}
+		}
+
+		return npos;
+	}
+
+	size_t string::find(char* str, size_t pos)
+	{
+		assert(pos < _size);
+
+		const char* tmp = strstr(_str + pos, str);
+		if (tmp == nullptr)
+		{
+			return npos;
+		}
+		else
+		{
+			return tmp - _str;
+		}
+	}
+
+	string string::substr(size_t pos, size_t len)
+	{
+		assert(pos < _size);
+
+		if (len > _size - pos)
+		{
+			len = _size - pos;
+		}
+
+		string sub;
+		sub.reserve(len);
+		for (size_t i = 0; i < len; ++i)
+		{
+			sub += _str[pos + i];
+		}
+
+		return sub;
+	}
+
+	ostream& operator<<(ostream& out, const string& s)
+	{
+		for (auto x : s)
+		{
+			out << x;
+		}
+
+		return out;
+	}
+
+	istream& operator>>(istream& in, string& s)
+	{
+		in.clear();
+
+		char ch;
+		ch = in.get();
+
+		while (ch != ' ' && ch != '\0')
+		{
+			s += ch;
+			ch = in.get();
+		}
+
+		return in;
 	}
 }

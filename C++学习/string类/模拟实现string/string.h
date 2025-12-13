@@ -3,43 +3,20 @@
 #include<assert.h>
 using namespace std;
 
-namespace yuuki
+namespace yuuki233233
 {
 	class string
 	{
 	public:
 		typedef char* iterator;
-		const typedef char* const_iterator;
+		typedef const char* const_iterator;
 
-		string(const char* str = " ")
-		{
-			_size = strlen(str);
-			_capacity = _size;
-			_str = new char[_capacity + 1];
-			strcpy(_str, str);
-		}
-
-		~string()
-		{
-			if (_str)
-			{
-				delete[] _str;
-				_str = nullptr;
-				_size = _capacity = 0;	
-			}
-		}
-
-		const char* c_str() const
+		iterator begin()
 		{
 			return _str;
 		}
 
-		int size()
-		{
-			return _size;
-		}
-
-		iterator begin()
+		const_iterator begin() const
 		{
 			return _str;
 		}
@@ -49,26 +26,66 @@ namespace yuuki
 			return _str + _size;
 		}
 
-		char& operator[](int n)
+		const_iterator end() const
 		{
-			return _str[n];
+			return _str + _size;
 		}
+
+		string()
+			:_str(new char[1] {'\0'})
+			, _size(0)
+			, _capacity(0)
+		{
+		}
+
+		string(const char* str)
+		{
+			_size = strlen(str);
+			_capacity = _size;
+			_str = new char[_capacity + 1];
+			strcpy(_str, str);
+		}
+
+		~string()
+		{
+			delete[] _str;
+			_str = nullptr;
+			_size = _capacity = 0;
+		}
+
+		const char* c_str() const
+		{
+			return _str;
+		}
+
+		size_t size() const;
+		size_t capacity() const;
+
+
+		char& operator[](size_t pos);
+		const char& operator[](size_t pos) const;
 
 		void reserve(size_t n);
 		void push_back(char ch);
+		void append(const char* str);
 		string& operator+=(char ch);
-		void append(char* str);
-		string& operator+=(char* str);
+		string& operator+=(const char* str);
 
-		void insert(char ch);
-		void insert(char* str);
+		void insert(size_t pos, char ch);
+		void insert(size_t pos, const char* str);
+		void erase(size_t pos, size_t = npos);
 
+		size_t find(char ch, size_t pos = 0);
+		size_t find(char* str, size_t pos = 0);
+		string substr(size_t pos = 0, size_t len = npos);
 	private:
 		char* _str;
 		int _size;
 		int _capacity;
+
+		static const size_t npos;
 	};
 
-	void test_string1();
-	void test_string2();
+	ostream& operator<<(ostream& out, const string& s);
+	istream& operator>>(istream& in, string& s);
 }
