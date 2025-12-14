@@ -67,11 +67,35 @@ void test_vector03()
 	cout << v1.capacity() << endl;	//30
 }
 
+void test_vector04()
+{
+	vector<int> v(5, 1);
+	vector<vector<int>> vv(10, v);
+
+	for (auto x : vv)
+	{
+		for (auto y : v)
+		{
+			cout << y << " ";
+		}
+		cout << endl;
+	}
+
+	/*for (size_t i = 0; i < vv.size(); ++i)
+	{
+		for (size_t j = 0; j < v.size(); ++j)
+		{
+			cout << vv[i][j] << " ";
+		}
+		cout << endl;
+	}*/
+}
+
 int main()
 {
 	//test_vector01();
 	//test_vector02();
-	test_vector03();
-
+	//test_vector03();
+	test_vector04();
 	return 0;
 }
