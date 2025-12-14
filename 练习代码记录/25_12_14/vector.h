@@ -70,11 +70,12 @@ namespace yuuki
 				//-----------------------------------
 				//_finish = _start + size();	//size为新的，需要旧的size
 				_finish = tmp + old_size;
-				_end_of_storage = _start + n;
+				_end_of_storage = tmp + n;
 			}
 		}
 
-		void push_back(char ch)
+		template<class T>
+		void push_back(T ch)
 		{
 			if (_start == _finish)
 			{
@@ -102,7 +103,14 @@ namespace yuuki
 
 		}
 
-		// 存在限制，用double类型则调用不了，可以考虑用模板
+		
+	private:
+		iterator _start = nullptr;
+		iterator _finish = nullptr;
+		iterator _end_of_storage = nullptr;
+	};
+
+	// 存在限制，用double类型则调用不了，可以考虑用模板
 		/*void print_vector(const vector<int>& v)
 		{
 			for (size_t i = 0; i < v.size(); ++i)
@@ -126,32 +134,27 @@ namespace yuuki
 			cout << endl;
 		}*/
 
-		template<class T>
-		void print_vector(const vector<T>& v)
+	template<class T>
+	void print_vector(const vector<T>& v)
+	{
+		// 规定，没有实例化的类模板里面取东西，编译器不能区分这里const_iterator
+		// 是类型还是静态成员变量
+		//typename vector<T>::const_iterator it = v.begin();
+		auto it = v.begin();
+
+		while (it != v.end())
 		{
-			// 规定，没有实例化的类模板里面取东西，编译器不能区分这里const_iterator
-			// 是类型还是静态成员变量
-			//typename vector<T>::const_iterator it = v.begin();
-			auto it = v.begin();
-
-			while (it != v.end())
-			{
-				cout << *it << " ";
-				++it;
-			}
-			cout << endl;
-
-			for (auto E : v)
-			{
-				cout << E << " ";
-			}
-			cout << endl;
+			cout << *it << " ";
+			++it;
 		}
-	private:
-		iterator _start = nullptr;
-		iterator _finish = nullptr;
-		iterator _end_of_storage = nullptr;
-	};
+		cout << endl;
+
+		for (auto E : v)
+		{
+			cout << E << " ";
+		}
+		cout << endl;
+	}
 
 	void test_vector1()
 	{
@@ -185,12 +188,12 @@ namespace yuuki
 		print_vector(v);
 
 		vector<double> vd;
-		v.push_back(1.1);
-		v.push_back(2.2);
-		v.push_back(3.3);
-		v.push_back(4.4);
-		v.push_back(5.5);
+		vd.push_back(1.1);
+		vd.push_back(2.2);
+		vd.push_back(3.3);
+		vd.push_back(4.4);
+		vd.push_back(5.5);
 		
-		vd.print_vector(vd);
+		print_vector(vd);
 	}
 }
