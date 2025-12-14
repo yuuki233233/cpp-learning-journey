@@ -43,6 +43,20 @@ namespace yuuki
 			return _end_of_storage - _start;
 		}
 
+		T& operator[](size_t pos)
+		{
+			assert(pos < size());
+
+			return _start[pos];
+		}
+
+		const T& operator[](size_t pos) const
+		{
+			assert(pos < size());
+
+			return _start[pos];
+		}
+
 		void reserve(size_t n)
 		{
 			if (n > capacity())
@@ -58,6 +72,34 @@ namespace yuuki
 				_finish = tmp + old_size;
 				_end_of_storage = _start + n;
 			}
+		}
+
+		void push_back(char ch)
+		{
+			if (_start == _finish)
+			{
+				reserve(capacity() == 0 ? 4 : capacity() * 2);
+			}
+
+			*_finish = ch;
+			++_finish;
+		}
+		
+		bool empty()
+		{
+			return _finish == _start;
+		}
+
+		void pop_back()
+		{
+			assert(!empty());
+			--_finish;
+		}
+
+		//用迭代器实现
+		void insert(iterator pos, const T& x)
+		{
+
 		}
 
 		// 存在限制，用double类型则调用不了，可以考虑用模板
@@ -105,36 +147,6 @@ namespace yuuki
 			}
 			cout << endl;
 		}
-
-		void push_back(char ch)
-		{
-			if (_start == _finish)
-			{
-				reserve(capacity() == 0 ? 4 : capacity()* 2);
-			}
-
-			*_finish = ch;
-			++_finish;
-		}
-
-		T& operator[](size_t pos)
-		{
-			assert(pos < size());
-
-			return _start[pos];
-		}
-
-		const T& operator[](size_t pos) const
-		{
-			assert(pos < size());
-
-			return _start[pos];
-		}
-
-		
-
-		
-
 	private:
 		iterator _start = nullptr;
 		iterator _finish = nullptr;
@@ -150,7 +162,27 @@ namespace yuuki
 		v.push_back(4);
 		v.push_back(5);
 
-		v.print_vector(v);
+		for (size_t i = 0; i < v.size(); i++)
+		{
+			cout << v[i] << " ";
+		}
+		cout << endl;
+
+		vector<int>::iterator it = v.begin();
+		while (it != v.end())
+		{
+			cout << *it << " ";
+			++it;
+		}
+		cout << endl;
+
+		for (auto e : v)
+		{
+			cout << e << " ";
+		}
+		cout << endl;
+
+		print_vector(v);
 
 		vector<double> vd;
 		v.push_back(1.1);
