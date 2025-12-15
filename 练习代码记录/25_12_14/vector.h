@@ -132,6 +132,24 @@ namespace yuuki
 			return pos; // 返回删除后的位置
 		}
 		
+		//三种情况
+		void resize(size_t n, T val = T())
+		{
+			if (n < size())
+			{
+				_finish = _start + n;
+			}
+			else
+			{
+				reserve(n);
+				while (_finish < _start + n)
+				{
+					*_finish = val;
+					++_finish;
+				}
+			}
+		}
+
 	private:
 		iterator _start = nullptr;
 		iterator _finish = nullptr;
@@ -177,11 +195,11 @@ namespace yuuki
 		}
 		cout << endl;
 
-		for (auto E : v)
+		/*for (auto E : v)
 		{
 			cout << E << " ";
 		}
-		cout << endl;
+		cout << endl;*/
 	}
 
 	void test_vector1()
@@ -272,6 +290,23 @@ namespace yuuki
 			}
 		}
 		print_vector(v);
+	}
 
+	void test_vector4()
+	{
+		vector<int> v;
+		v.resize(10, 1);
+		print_vector(v);
+		cout << v.size() << endl;
+		cout << v.capacity() << endl;
+
+		v.resize(15, 2);
+		print_vector(v);
+
+		v.resize(25, 3);
+		print_vector(v);
+
+		v.resize(5);
+		print_vector(v);
 	}
 }
