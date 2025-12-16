@@ -106,9 +106,50 @@ void test_list02() //emplace与push差别
 
 }
 
+void test_list03() //insert find erase
+{
+	// ↓ ↓ ↓ ↓ ↓ ↓ ↓ ↓ ↓ ↓ ↓ ↓ ↓ ↓ ↓ ↓ ↓ ↓ ↓ ↓ ↓
+	// insert
+	list<int> li;
+	li.push_back(1);
+	li.push_back(2);
+	li.push_back(3);
+	li.push_back(4);
+
+	//li.insert(li.begin() + 2, 30); //不支持【begin()+num】
+	li.insert(li.begin(), 30);
+	print(li);
+
+	//如果偏要在某位置插入，则需要用迭代器找位置
+	auto it = li.begin();
+	int n = 2;
+	while (n--)
+	{
+		it++;
+	}
+	li.insert(it, 60);
+	print(li);
+	// ↑ ↑ ↑ ↑ ↑ ↑ ↑ ↑ ↑ ↑ ↑ ↑ ↑ ↑ ↑ ↑ ↑ ↑ ↑ ↑ ↑ 
+
+
+	// ↓ ↓ ↓ ↓ ↓ ↓ ↓ ↓ ↓ ↓ ↓ ↓ ↓ ↓ ↓ ↓ ↓ ↓ ↓ ↓ ↓
+	//find erase
+
+	int x = 0;
+	cin >> x;
+	it = find(li.begin(), li.end(), x);
+	if (it != li.end())
+	{
+		li.erase(it);
+	}
+	print(li);
+	// ↑ ↑ ↑ ↑ ↑ ↑ ↑ ↑ ↑ ↑ ↑ ↑ ↑ ↑ ↑ ↑ ↑ ↑ ↑ ↑ ↑ 
+
+}
+
 int main()
 {
-	test_list02();
+	test_list03();
 
 	return 0;
 }
