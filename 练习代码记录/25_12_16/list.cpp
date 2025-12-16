@@ -147,9 +147,35 @@ void test_list03() //insert find erase
 
 }
 
+void test_list04() //list中的sort
+{
+	// 由于算法库中的sort对list不友好，所以单独为list开了个排序
+	list<int> li;
+	li.push_back(10);
+	li.push_back(2);
+	li.push_back(100);
+	li.push_back(6);
+	li.push_back(30);
+	li.push_back(9);
+	print(li);
+
+	// 默认升序
+	li.sort();
+	print(li);
+
+	// 降序 - 仿函数
+	// 有名对象
+	//greater<int> gt;
+	//li.sort(gt);
+
+	// 匿名对象(一次性，更方便)
+	li.sort(greater<int>());
+	print(li);
+}
+
 int main()
 {
-	test_list03();
+	test_list04();
 
 	return 0;
 }
