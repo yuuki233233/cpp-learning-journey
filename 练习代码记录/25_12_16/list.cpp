@@ -173,9 +173,28 @@ void test_list04() //list中的sort
 	print(li);
 }
 
+void test_list05() //unique
+{
+	list<int> li;
+	li.push_back(6);
+	li.push_back(3);
+	li.push_back(1);
+	li.push_back(6);
+	li.push_back(6);
+	li.push_back(8);
+	print(li);
+	//li.unique(); // 必须先排序，后删除
+	//print(li); // 6 3 1 6 8
+
+	li.sort();
+	li.unique();
+	print(li); // 1 3 6 8
+
+}
+
 int main()
 {
-	test_list04();
+	test_list05();
 
 	return 0;
 }
