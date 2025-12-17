@@ -58,4 +58,16 @@ namespace yuuki
 		Node* _head;
 		size_t _size;
 	};
+
+	void test_list01()
+	{
+		list<int> lt1;
+		lt1.push_back(1);
+		lt1.push_back(2);
+		lt1.push_back(3);
+		lt1.push_back(4);
+
+
+	}
+
 }
