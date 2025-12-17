@@ -207,9 +207,29 @@ void test1()
 	
 }
 
+void test_list06() // splice(剪切数据)
+{
+	list<int> l1, l2;
+
+	for (size_t i = 1; i < 4; ++i)
+	{
+		l1.push_back(i); // 输出：1 2 3
+	}
+
+	for (size_t i = 1; i < 4; ++i)
+	{
+		l2.push_back(i * 10);// 输出：10 20 30
+	}
+
+	list<int>::iterator it = l1.begin(); // 迭代器的指向位置
+
+	l1.splice(it, l2); // 输出：10 20 30 1 2 3
+						// l2--->nullptr
+}
+
 int main()
 {
-	test1();
+	test_list06();
 
 	return 0;
 }
