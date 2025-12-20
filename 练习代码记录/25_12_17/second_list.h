@@ -198,6 +198,39 @@ namespace yuuki
 			_size = 0;
 		}
 
+		void empty_init()
+		{
+			_head = new Node;
+			_head->_next = _head;
+			_head->_prev = _head;
+			_size = 0;
+		}
+
+		// lt2(lt1)
+		list(const list<T>& lt)
+		{
+			// 哨兵位头节点
+			empty_init();
+
+			for (auto& e : lt)
+			{
+				push_back(e);
+			}
+		}
+
+		void swap(list<T>& lt)
+		{
+			std::swap(_head, lt._head);
+			std::swap(_size, lt._size);
+		}
+
+		// lt1 = lt3
+		list<T>& operator=(list<T> lt)
+		{
+			swap(lt);
+			return *this;
+		}
+
 		~list()
 		{
 			clear();
@@ -417,5 +450,28 @@ namespace yuuki
 		print_container(lt);
 	}
 
-	
+	void test_list03()
+	{
+		list<int> lt1;
+		lt1.push_back(1);
+		lt1.push_back(2);
+		lt1.push_back(3);
+		lt1.push_back(4);
+
+		list<int> lt2(lt1);
+
+		print_container(lt1);
+		print_container(lt2);
+
+
+		list<int> lt3;
+		lt3.push_back(10);
+		lt3.push_back(20);
+		lt3.push_back(30);
+		lt3.push_back(40);
+
+		lt1 = lt3; // 默认生成浅拷贝
+		print_container(lt1);
+		print_container(lt3);
+	}
 }
