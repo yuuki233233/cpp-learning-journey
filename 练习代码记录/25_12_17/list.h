@@ -1,5 +1,6 @@
 #pragma once
 #include<iostream>
+#include<assert.h>
 using namespace std;
 
 namespace yuuki
@@ -341,10 +342,5 @@ namespace yuuki
 		cout << endl;
 
 		print_container(lt1);
-	}
-
-	void test_list02()
-	{
-
 	}
 }
