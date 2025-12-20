@@ -33,14 +33,14 @@ namespace yuuki
 		{ }
 
 		// 前置++
-		Ref& operator++()
+		Self& operator++()
 		{
 			_node = _node->_next;	// 下一个节点的迭代器
 			return *this;			// 返回自身
 		}
 
 		// 后置++
-		Ref operator++(int)
+		Self operator++(int)
 		{
 			Self tmp(*this);	// 拷贝构造旧迭代器位置
 			_node = _node->_next;
@@ -48,14 +48,14 @@ namespace yuuki
 		}
 
 		// 前置--
-		Ref& operator--()
+		Self& operator--()
 		{
 			_node = _node->_prev;	// 上一个节点的迭代器
 			return *this;			// 返回自身
 		}
 
 		// 后置--
-		Ref operator--(int)
+		Self operator--(int)
 		{
 			Self tmp(*this);	// 拷贝构造旧迭代器位置
 			_node = _node->_prev;
@@ -104,7 +104,7 @@ namespace yuuki
 			return _head->_next; // 隐式类型转换
 		}
 
-		const_iterator begin()
+		const_iterator begin() const
 		{
 			return _head->_next;
 		}
@@ -114,7 +114,7 @@ namespace yuuki
 			return _head;
 		}
 
-		const_iterator end()
+		const_iterator end() const
 		{
 			return _head;
 		}
@@ -144,7 +144,7 @@ namespace yuuki
 
 			for (auto& e : lt) // 尾插出个一样的链表
 			{
-				push_back(lt);
+				push_back(e);
 			}
 		}
 
@@ -233,7 +233,7 @@ namespace yuuki
 		// 尾删
 		void pop_back()
 		{
-			erase(end());
+			erase(--end());
 		}
 
 		size_t size() const
@@ -275,5 +275,61 @@ namespace yuuki
 			cout << e << " ";
 		}
 		cout << endl;
+	}
+
+	void test_list()
+	{
+		list<int> lt1;
+		lt1.push_back(1);
+		lt1.push_back(4);
+		print_container(lt1); // 输出：1 4
+
+		lt1.insert(++lt1.begin(), 2);
+		print_container(lt1); // 输出：1 2 4
+
+		lt1.pop_front();
+		lt1.pop_back();
+		print_container(lt1); // 输出：2
+
+		// insert以后迭代器不失效
+		list<int>::iterator it = lt1.begin();
+		lt1.insert(it, 20);
+		*it += 100;			// 输出：20 102(迭代器没有失效)
+		print_container(lt1);
+
+		lt1.push_back(3);
+		// erase以后迭代器失效
+		// 删除所有的偶数
+		it = lt1.begin();
+		while (it != lt1.end())
+		{
+			if (*it % 2 == 0)
+			{
+				//lt.erase(it); // 迭代器失效
+				it = lt1.erase(it);
+			}
+			else
+			{
+				++it;
+			}
+		}
+		print_container(lt1); // 输出：3
+
+
+		list<int> lt2(lt1);
+
+		print_container(lt1); // 输出：3
+		print_container(lt2); // 输出：3
+
+
+		list<int> lt3;
+		lt3.push_back(10);
+		lt3.push_back(20);
+		lt3.push_back(30);
+		lt3.push_back(40);
+
+		lt1 = lt3; // 默认生成浅拷贝
+		print_container(lt1); // 输出：10 20 30 40
+		print_container(lt3); // 输出：10 20 30 40
 	}
 }

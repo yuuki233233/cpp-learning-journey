@@ -3,7 +3,7 @@
 
 int main()
 {
-	
+	yuuki::test_list();
 
 	return 0;
 }
