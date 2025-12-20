@@ -192,10 +192,16 @@ namespace yuuki
 		// 构造
 		list()
 		{
-			_head = new Node;
-			_head->_next = _head;
-			_head->_prev = _head;
-			_size = 0;
+			empty_init();
+		}
+
+		list(initializer_list<T> il)
+		{
+			empty_init();
+			for (auto& e : il)
+			{
+				push_back(e);
+			}
 		}
 
 		void empty_init()
@@ -473,5 +479,27 @@ namespace yuuki
 		lt1 = lt3; // 默认生成浅拷贝
 		print_container(lt1);
 		print_container(lt3);
+	}
+
+	void func(const list<int>& lt)
+	{
+		print_container(lt);
+	}
+
+	void test_list04()
+	{
+		// 隐式类型转换
+		list<int> lt1 = { 1, 2, 3, 4, 5, 6 };
+		// 直接构造(C++11)
+		list<int> lt2({ 1,2,3,4,5,6 });
+		const list<int>& lt3 = { 1,2,3,4,5,6 };
+
+		func(lt1);
+		func({ 1,2,3,4,5,6 });
+
+		initializer_list<int> il = { 10, 20, 30 };
+		cout << typeid(il).name() << endl;
+		cout << sizeof(il) << endl;		// 输出：8 (证明有两个指针分别指向头和尾)
+
 	}
 }
