@@ -179,12 +179,12 @@ namespace yuuki
 			return _head;
 		}
 
-		const_iterator const_begin() const
+		const_iterator begin() const
 		{
 			return _head->_next;
 		}
 
-		const_iterator const_end() const
+		const_iterator end() const
 		{
 			return _head;
 		}
@@ -196,6 +196,22 @@ namespace yuuki
 			_head->_next = _head;
 			_head->_prev = _head;
 			_size = 0;
+		}
+
+		~list()
+		{
+			clear();
+			delete _head;
+			_head = nullptr;
+		}
+
+		void clear()
+		{
+			auto it = begin();
+			while (it != end())
+			{
+				it = erase(it);
+			}
 		}
 
 		// 尾插
@@ -220,8 +236,22 @@ namespace yuuki
 			insert(begin(), x);
 		}
 
+		//// 删除指定迭代器的位置
+		//void erase(iterator pos)
+		//{
+		//	assert(pos != end());
+
+		//	Node* prev = pos._node->_prev;
+		//	Node* next = pos._node->_next;
+
+		//	prev->_next = next;
+		//	next->_prev = prev;
+		//	delete pos._node;
+		//	--_size;
+		//}
+
 		// 删除指定迭代器的位置
-		void erase(iterator pos)
+		iterator erase(iterator pos)
 		{
 			assert(pos != end());
 
@@ -232,6 +262,8 @@ namespace yuuki
 			next->_prev = prev;
 			delete pos._node;
 			--_size;
+
+			return next; // 隐式类型转换
 		}
 
 		// 尾删
@@ -288,13 +320,14 @@ namespace yuuki
 	// 支持所有容器
 	// 按需实例化
 	template<class Container>
-	void print_container(Container& v)
+	void print_container(const Container& v)
 	{
 		// const iterator -> 迭代器本身不能修改
 		// const_iterator -> 指向内容不能修改
 
-		list<int>::const_iterator it = v.const_begin();
-		while (it != v.const_begin())
+		//list<int>::const_iterator it = v.const_begin();
+		auto it = v.begin();
+		while (it != v.begin())
 		{
 			// const迭代器只读不写
 			//*it += 10; 
@@ -350,4 +383,39 @@ namespace yuuki
 
 		print_container(lt1);
 	}
+
+	void test_list02()
+	{
+		list<int> lt;
+		lt.push_back(1);
+		lt.push_back(2);
+		lt.push_back(3);
+		lt.push_back(4);
+
+		// insert以后迭代器不失效
+		list<int>::iterator it = lt.begin();
+		lt.insert(it, 20);
+		*it += 100;			// 输出： 20 101 2 3 4 (迭代器没有失效)
+		print_container(lt);
+
+		// erase以后迭代器失效
+		// 删除所有的偶数
+		it = lt.begin();
+		while (it != lt.end())
+		{
+			if (*it % 2 == 0)
+			{
+				//lt.erase(it); // 迭代器失效
+				it = lt.erase(it);
+			}
+			else
+			{
+				++it;
+			}
+		}
+
+		print_container(lt);
+	}
+
+	
 }
