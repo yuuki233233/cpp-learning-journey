@@ -285,5 +285,3 @@ int main()
 	A* p2 = new A[10];
 	delete p2;
 }
-
-
