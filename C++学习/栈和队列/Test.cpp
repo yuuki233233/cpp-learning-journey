@@ -9,6 +9,7 @@ using namespace std;
 
 #include"模拟实现Queue.h"
 #include"模拟实现Stack.h"
+#include"PriorityQueue.h"
 
 //int main()
 //{
@@ -38,39 +39,57 @@ using namespace std;
 //	return 0;
 //}
 
-void test_op2()
-{
-	srand(time(0));
-	const int N = 1000000;
-
-	deque<int> dq1;
-	deque<int> dq2;
-
-	for (int i = 0; i < N; ++i)
-	{
-		auto e = rand() + i;
-		dq1.push_back(e);
-		dq2.push_back(e);
-	}
-
-	int begin1 = clock();
-	sort(dq1.begin(), dq1.end());
-	int end1 = clock();
-
-	int begin2 = clock();
-	// 拷贝到vector
-	vector<int> v(dq2.begin(), dq2.end());
-	sort(v.begin(), v.end());
-	dq2.assign(v.begin(), v.end());
-	int end2 = clock();
-
-	printf("deque sort:%d\n", end1 - begin1);
-	printf("deque copy vector sort, copy back deque:%d\n", end2 - begin2);
-}
+//void test_op2()
+//{
+//	srand(time(0));
+//	const int N = 1000000;
+//
+//	deque<int> dq1;
+//	deque<int> dq2;
+//
+//	for (int i = 0; i < N; ++i)
+//	{
+//		auto e = rand() + i;
+//		dq1.push_back(e);
+//		dq2.push_back(e);
+//	}
+//
+//	int begin1 = clock();
+//	sort(dq1.begin(), dq1.end());
+//	int end1 = clock();
+//
+//	int begin2 = clock();
+//	// 拷贝到vector
+//	vector<int> v(dq2.begin(), dq2.end());
+//	sort(v.begin(), v.end());
+//	dq2.assign(v.begin(), v.end());
+//	int end2 = clock();
+//
+//	printf("deque sort:%d\n", end1 - begin1);
+//	printf("deque copy vector sort, copy back deque:%d\n", end2 - begin2);
+//}
+//
+//int main()
+//{
+//	test_op2();
+//
+//	return 0;
+//}
 
 int main()
 {
-	test_op2();
+	yuuki::priorityqueue<int, list<int>> pq;
+	pq.push_back(6);
+	pq.push_back(3);
+	pq.push_back(8);
+	pq.push_back(2);
+	pq.push_back(9);
+	while (!pq.empty())
+	{
+		cout << pq.top() << " ";
+		pq.pop();
+	}
+	cout << endl;
 
 	return 0;
 }
