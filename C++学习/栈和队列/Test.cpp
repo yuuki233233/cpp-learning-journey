@@ -76,20 +76,20 @@ using namespace std;
 //	return 0;
 //}
 
-int main()
-{
-	yuuki::priorityqueue<int, list<int>> pq;
-	pq.push_back(6);
-	pq.push_back(3);
-	pq.push_back(8);
-	pq.push_back(2);
-	pq.push_back(9);
-	while (!pq.empty())
-	{
-		cout << pq.top() << " ";
-		pq.pop();
-	}
-	cout << endl;
-
-	return 0;
-}
+//int main()
+//{
+//	yuuki::priorityqueue<int, list<int>> pq;
+//	pq.push_back(6);
+//	pq.push_back(3);
+//	pq.push_back(8);
+//	pq.push_back(2);
+//	pq.push_back(9);
+//	while (!pq.empty())
+//	{
+//		cout << pq.top() << " ";
+//		pq.pop();
+//	}
+//	cout << endl;
+//
+//	return 0;
+//}
