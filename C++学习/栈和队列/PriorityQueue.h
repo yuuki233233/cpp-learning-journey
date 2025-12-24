@@ -1,9 +1,30 @@
 #pragma once
+#include<vector>
+
+template<class T>
+class Less
+{
+public:
+	bool operator()(const T& x, const T& y)
+	{
+		return x < y;
+	}
+};
+
+template<class T>
+class Greater
+{
+public:
+	bool operator()(const T& x, const T& y)
+	{
+		return x > y;
+	}
+};
 
 namespace yuuki
 {
 	// 类似于完全二叉树
-	template<class T, class Container = vector<T>>
+	template<class T, class Container = vector<T>, class Compare = Less<T>>
 	class priorityqueue
 	{
 	public:
