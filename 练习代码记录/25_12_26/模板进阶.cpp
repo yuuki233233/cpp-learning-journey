@@ -110,59 +110,98 @@ bool my_less<Date*>(Date* const & left, Date* const & right)
 //}
 
 
-// 类模板全特化
-template<class T1, class T2>
-class Data
-{
-public:
-	Data() { cout << "Data<T1, T2>" << endl;}
-};
+//// 类模板全特化
+//template<class T1, class T2>
+//class Data
+//{
+//public:
+//	Data() { cout << "Data<T1, T2>" << endl;}
+//};
+//
+//template<>
+//class Data<int, char> // 这里指定了类型
+//{
+//public:
+//	Data() { cout << "Data<int, char>" << endl;}
+//};
+//
+//// 类模板半特化
+//// 部分特化(将模板参数类列表中的一部分参数特化)
+//template<class T>
+//class Data<T&, int>
+//{
+//public:
+//	Data() { cout << "Data<T&, int>" << endl;}
+//};
+//
+//// 两个参数偏特化为指针类型
+//template<class T1, class T2>
+//class Data<T1*, T2*>
+//{
+//public:
+//	Data() { cout << "Data<T1*, T2*>" << endl; }
+//};
+//
+//// 两个参数偏特化为引用类型
+//template<class T1, class T2>
+//class Data<T1*, T2&>
+//{
+//public:
+//	Data() { cout << "Data<T1*, T2&>" << endl; }
+//};
+//
+//int main()
+//{
+//	Data<int, int> d1;	// Data<T1, T2>
+//	Data<int, char> d2; // Data<int, char>
+//	cout << endl;
+//
+//	Data<char, int> p1;		// Data<T1, T2>
+//	Data<double, int> p2;	// Data<T1, T2>
+//	cout << endl;
+//
+//	Data<int*, int*> p3;		// Data<T1*, T2*>
+//	Data<double*, short*> p4;	// Data<T1*, T2*>
+//	Data<int*, int&> p5;		// Data<T1*, T2&>
+//	cout << endl;
+//	return 0;
+//}
 
-template<>
-class Data<int, char> // 这里指定了类型
-{
-public:
-	Data() { cout << "Data<int, char>" << endl;}
-};
 
-// 类模板半特化
-// 部分特化(将模板参数类列表中的一部分参数特化)
+#include<vector>
+#include<algorithm>
 template<class T>
-class Data<T&, int>
+struct Less
 {
-public:
-	Data() { cout << "Data<T&, int>" << endl;}
-};
-
-// 两个参数偏特化为指针类型
-template<class T1, class T2>
-class Data<T1*, T2*>
-{
-public:
-	Data() { cout << "Data<T1*, T2*>" << endl; }
-};
-
-// 两个参数偏特化为引用类型
-template<class T1, class T2>
-class Data<T1*, T2&>
-{
-public:
-	Data() { cout << "Data<T1*, T2&>" << endl; }
+	bool operator()(const T& x, const T& y) const
+	{
+		return x < y;
+	}
 };
 
 int main()
 {
-	Data<int, int> d1;	// Data<T1, T2>
-	Data<int, char> d2; // Data<int, char>
-	cout << endl;
+	Date d1(2022, 7, 7);
+	Date d2(2022, 7, 6);
+	Date d3(2022, 7, 8);
 
-	Data<char, int> p1;		// Data<T1, T2>
-	Data<double, int> p2;	// Data<T1, T2>
-	cout << endl;
+	vector<Date> v1;
+	v1.push_back(d1);
+	v1.push_back(d2);
+	v1.push_back(d3);
 
-	Data<int*, int*> p3;		// Data<T1*, T2*>
-	Data<double*, short*> p4;	// Data<T1*, T2*>
-	Data<int*, int&> p5;		// Data<T1*, T2&>
-	cout << endl;
+	// 可以直接排序，结果是日期升序
+	sort(v1.begin(), v1.end(), Less<Date>());
+
+	vector<Date*> v2;
+	v2.push_back(&d1);
+	v2.push_back(&d2);
+	v2.push_back(&d3);
+
+	// 可以直接排序，结果错误日期还不是升序，而v2中放的地址是升序
+	// 此处需要在排序过程中，让sort比较v2中存放地址指向的日期对象
+	// 但是走Less模板，sort在排序时实际比较的是v2中指针的地址，因此无法达到预期
+	sort(v2.begin(), v2.end(), Less<Date*>());
+
 	return 0;
 }

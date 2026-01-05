@@ -76,23 +76,23 @@ using namespace std;
 //	return 0;
 //}
 
-//int main()
-//{
-//	yuuki::priorityqueue<int, list<int>> pq;
-//	pq.push_back(6);
-//	pq.push_back(3);
-//	pq.push_back(8);
-//	pq.push_back(2);
-//	pq.push_back(9);
-//	while (!pq.empty())
-//	{
-//		cout << pq.top() << " ";
-//		pq.pop();
-//	}
-//	cout << endl;
-//
-//	return 0;
-//}
+int main()
+{
+	yuuki::priorityqueue<int, list<int>> pq;
+	pq.push_back(6);
+	pq.push_back(3);
+	pq.push_back(8);
+	pq.push_back(2);
+	pq.push_back(9);
+	while (!pq.empty())
+	{
+		cout << pq.top() << " ";
+		pq.pop();
+	}
+	cout << endl;
+
+	return 0;
+}
 
 // 仿函数：本质是一个类，这个类重载operator(),他的对象可以像函数一样使用
 //template<class T>
@@ -115,68 +115,68 @@ using namespace std;
 //	}
 //};
 
-template<class Compare>
-void BubbleSort(int* a, int n, Compare com)
-{
-	for (int j = 0; j < n; j++)
-	{
-		// 单趟
-		int flag = 0;
-		for (int i = 1; i < n - j; i++)
-		{
-			//if (a[i] < a[i - 1])
-			if (com(a[i], a[i - 1]))
-			{
-				swap(a[i - 1], a[i]);
-				flag = 1;
-			}
-		}
-
-		if (flag == 0)
-		{
-			break;
-		}
-	}
-}
-
-template<class T>
-void print(T* a, int n)
-{
-	for (int i = 0; i < n; i++)
-	{
-		cout << a[i];
-	}
-	cout << endl;
-}
-
-int main()
-{
-	Less<int> LessFunc;
-	Greater<int> GreaterFunc;
-	// 函数对象
-	cout << LessFunc(1, 2) << endl;
-	cout << LessFunc.operator()(1, 2) << endl;
-
-	int a[] = { 9,1,2,5,7,4,6,3 };
-	BubbleSort(a, 8, LessFunc);
-	cout << "LessFunc:";
-	print(a, sizeof(a) / sizeof(a[0]));
-	cout << endl;
-
-	BubbleSort(a, 8, GreaterFunc);
-	cout << "GreaterFunc:";
-	print(a, sizeof(a) / sizeof(a[0]));
-	cout << endl;
-
-	BubbleSort(a, 8, Less<int>());
-	cout << "LessFunc:";
-	print(a, sizeof(a) / sizeof(a[0]));
-	cout << endl;
-
-	BubbleSort(a, 8, Greater<int>());
-	cout << "GreaterFunc:";
-	print(a, sizeof(a) / sizeof(a[0]));
-	cout << endl;
-
-	return 0;
-}
+//template<class Compare>
+//void BubbleSort(int* a, int n, Compare com)
+//{
+//	for (int j = 0; j < n; j++)
+//	{
+//		// 单趟
+//		int flag = 0;
+//		for (int i = 1; i < n - j; i++)
+//		{
+//			//if (a[i] < a[i - 1])
+//			if (com(a[i], a[i - 1]))
+//			{
+//				swap(a[i - 1], a[i]);
+//				flag = 1;
+//			}
+//		}
+//
+//		if (flag == 0)
+//		{
+//			break;
+//		}
+//	}
+//}
+//
+//template<class T>
+//void print(T* a, int n)
+//{
+//	for (int i = 0; i < n; i++)
+//	{
+//		cout << a[i];
+//	}
+//	cout << endl;
+//}
+//
+//int main()
+//{
+//	Less<int> LessFunc;
+//	Greater<int> GreaterFunc;
+//	// 函数对象
+//	cout << LessFunc(1, 2) << endl;
+//	cout << LessFunc.operator()(1, 2) << endl;
+//
+//	int a[] = { 9,1,2,5,7,4,6,3 };
+//	BubbleSort(a, 8, LessFunc);
+//	cout << "LessFunc:";
+//	print(a, sizeof(a) / sizeof(a[0]));
+//	cout << endl;
+//
+//	BubbleSort(a, 8, GreaterFunc);
+//	cout << "GreaterFunc:";
+//	print(a, sizeof(a) / sizeof(a[0]));
+//	cout << endl;
+//
+//	BubbleSort(a, 8, Less<int>());
+//	cout << "LessFunc:";
+//	print(a, sizeof(a) / sizeof(a[0]));
+//	cout << endl;
+//
+//	BubbleSort(a, 8, Greater<int>());
+//	cout << "GreaterFunc:";
+//	print(a, sizeof(a) / sizeof(a[0]));
+//	cout << endl;
+//
+//	return 0;
+//}
