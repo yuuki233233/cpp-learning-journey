@@ -262,40 +262,86 @@ using namespace std;
 
 //————————————————————————————纯虚函数
 
-class Animal
+//class Animal
+//{
+//public:
+//	virtual void a() = 0; // 纯虚函数写法(类似于创建，之后要初始化)
+//};
+//
+//class Cat :public Animal
+//{
+//public:
+//	virtual void a() // 类似于初始化
+//	{
+//		cout << "miao~" << endl;
+//	}
+//};
+//
+//class Dog :public Animal
+//{
+//public:
+//	virtual void a()
+//	{
+//		cout << "wang~" << endl;
+//	}
+//};
+//
+//int main()
+//{
+//	// error：无法实例化抽象类
+//	//Animal animal;
+//
+//	Animal* pCat = new Cat;
+//	pCat->a();
+//
+//	Animal* pDog = new Dog;
+//	pDog->a();
+//
+//	return 0;
+//}
+
+
+//————————————————————————————虚函数原理
+
+class Person
 {
 public:
-	virtual void a() = 0; // 纯虚函数写法(类似于创建，之后要初始化)
+	virtual void BuyTicket() { cout << "全价" << endl; }
+private:
+	string _name;
 };
 
-class Cat :public Animal
+class Student : public Person
 {
 public:
-	virtual void a()
-	{
-		cout << "miao~" << endl;
-	}
+	virtual void BuyTicket() { cout << "打折" << endl; }
+private:
+	string _id;
 };
 
-class Dog :public Animal
+class Soldier : public Person
 {
 public:
-	virtual void a()
-	{
-		cout << "wang~" << endl;
-	}
+	virtual void BuyTicket() { cout << "优先" << endl; }
+private:
+	string _codename;
 };
+
+void Func(Person* ptr)
+{
+	ptr->BuyTicket();
+}
 
 int main()
 {
-	// error：无法实例化抽象类
-	//Animal animal;
+	Person ps;
+	Func(&ps);
 
-	Animal* pCat = new Cat;
-	pCat->a();
+	Student d;
+	Func(&d);
 
-	Animal* pDog = new Dog;
-	pDog->a();
+	Soldier s;
+	Func(&s);
 
 	return 0;
 }
