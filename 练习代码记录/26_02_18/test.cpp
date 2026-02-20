@@ -111,6 +111,7 @@ void test03()
 	int b = 1;
 	const int c = b;
 	string s("11111111");
+	/* operator，因为是字符类型，需强转成 void*取地址 */
 	s[0] = 'x';
 
 	cout << &c << endl;
@@ -119,6 +120,7 @@ void test03()
 	// 右值不能取地址
 	10;
 	b + b;
+	/* 返回值 -> 临时变量 */
 	fmin(b, b);
 	string("11111111");
 
@@ -171,8 +173,10 @@ void test04()
 	cout << &r1 << endl;
 	cout << &rr1 << endl;
 
+	// int&& rr1 = 10;
+	/* 右值引用本身的属性会被变成左值 */
 	// 注意：rr1的属性是左值，所以不能再被右值引用绑定，除非move一下
-	int& r6 = r1;
+	int& r6 = rr1;
 	//int&& rrx7 = rr1;
 	int&& rrx7 = move(rr1);
 }
