@@ -153,7 +153,7 @@ public:
 		{	// 条件parent：防止空指针（_root节点的父亲为NULL）
 			Node* grandfater = parent->_parent;
 
-			if (parent = grandfater->_left) // 叔叔在右边
+			if (parent == grandfater->_left) // 叔叔在右边
 			{
 				//   g
 				// p   u
